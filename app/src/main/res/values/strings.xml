@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">Flora</string>
+    <string name="contentDescription_ivFlora">ivFlora</string>
+    <string name="tvNombre">Nombre</string>
+    <string name="tvFamilia">Familia</string>
+    <string name="tvIdentificacion">Identificacion</string>
+    <string name="tvAltitud">Altitud</string>
+    <string name="tvHabitat">Habitat</string>
+    <string name="tvFitosociologia">Fitosociologia</string>
+    <string name="tvBiotipo">Biotipo</string>
+    <string name="tvBiologiaReproductiva">Biologia reproductiva</string>
+    <string name="tvFloracion">Floracion</string>
+    <string name="tvFructificacion">Fructificacion</string>
+    <string name="tvExpresionSexual">Expresion sexual</string>
+    <string name="tvPolinazcion">Polinizacion</string>
+    <string name="tvDispersion">Dispersion</string>
+    <string name="tvNumeroCromosomatico">Numero cromosomatico</string>
+    <string name="tvReproduccionAsexual">Reproduccion asexual</string>
+    <string name="tvDistribucion">Distribucion</string>
+    <string name="tvBiologia">Biologia</string>
+    <string name="tvDemografia">Demografia</string>
+    <string name="tvAmenazas">Amenazas</string>
+    <string name="tvMedidasPropuestas">Medidas propuestas</string>
 </resources>
