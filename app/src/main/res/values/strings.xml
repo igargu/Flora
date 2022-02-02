@@ -21,4 +21,7 @@
     <string name="tvDemografia">Demografia</string>
     <string name="tvAmenazas">Amenazas</string>
     <string name="tvMedidasPropuestas">Medidas propuestas</string>
+    <string name="etNombre">Nombre</string>
+    <string name="btAdd">Add</string>
+    <string name="contentDescription_fabAdd">Add icon</string>
 </resources>

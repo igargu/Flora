@@ -1,4 +1,4 @@
-package es.ikergarciagutierrez.accdat.flora.view.viewholder;
+package es.ikergarciagutierrez.accdat.flora.view.adapter.viewholder;
 
 import android.view.View;
 import android.widget.ImageView;

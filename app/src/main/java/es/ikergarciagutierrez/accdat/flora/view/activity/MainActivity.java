@@ -1,30 +1,24 @@
-package es.ikergarciagutierrez.accdat.flora;
+package es.ikergarciagutierrez.accdat.flora.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import es.ikergarciagutierrez.accdat.flora.model.entity.CreateResponse;
-import es.ikergarciagutierrez.accdat.flora.model.entity.RowsResponse;
-import es.ikergarciagutierrez.accdat.flora.model.entity.Flora;
+import es.ikergarciagutierrez.accdat.flora.R;
 import es.ikergarciagutierrez.accdat.flora.model.api.FloraClient;
+import es.ikergarciagutierrez.accdat.flora.view.activity.AddFloraActivity;
 import es.ikergarciagutierrez.accdat.flora.viewmodel.MainActivityViewModel;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    FloraClient floraClient;
+    private FloraClient floraClient;
+    private FloatingActionButton fabAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +29,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void initialize() {
 
+        fabAdd = findViewById(R.id.fabAdd);
+        fabAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openAddActivity();
+            }
+        });
+
         MainActivityViewModel mavm = new ViewModelProvider(this).get(MainActivityViewModel.class);
-        MutableLiveData<ArrayList<Flora>> floraList = mavm.getFloraLiveData();
-        floraList.observe(this, floraPlural -> {
+        mavm.getFloraLiveData().observe(this, floraPlural -> {
             Log.v("xyzyx", floraPlural.toString());
         });
         mavm.getFlora();
@@ -117,6 +118,11 @@ public class MainActivity extends AppCompatActivity {
                 Log.v("xyzyx", t.getLocalizedMessage());
             }
         });*/
+    }
+
+    private void openAddActivity() {
+        Intent intent = new Intent(this, AddFloraActivity.class);
+        startActivity(intent);
     }
 }
 

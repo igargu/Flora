@@ -24,6 +24,7 @@ public class Repository {
     private static FloraClient floraClient;
 
     private MutableLiveData<ArrayList<Flora>> floraLiveData = new MutableLiveData<>();
+    private MutableLiveData<Long> addFloraLiveData = new MutableLiveData<>();
 
     /**
      * Inicialización de las variables estáticas
@@ -57,6 +58,10 @@ public class Repository {
 
     public MutableLiveData<ArrayList<Flora>> getFloraLiveData() {
         return floraLiveData;
+    }
+
+    public MutableLiveData<Long> getAddFloraLiveData() {
+        return addFloraLiveData;
     }
 
     public void deleteFlora(long id) {
