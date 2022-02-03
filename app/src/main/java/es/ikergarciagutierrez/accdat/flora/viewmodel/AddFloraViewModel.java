@@ -15,6 +15,7 @@ public class AddFloraViewModel extends AndroidViewModel {
 
     public AddFloraViewModel(@NonNull Application application) {
         super(application);
+        repository = new Repository(application);
     }
 
     public MutableLiveData<Long> getAddFloraLiveData() {
