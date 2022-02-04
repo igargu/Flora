@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FloraClient floraClient;
     private FloatingActionButton fabAdd;
+    private FloatingActionButton fabImagen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 openAddActivity();
             }
+        });
+
+        fabImagen = findViewById(R.id.fabImagen);
+        fabImagen.setOnClickListener(v -> {
+            openAddImagenActivity();
         });
 
         MainActivityViewModel mavm = new ViewModelProvider(this).get(MainActivityViewModel.class);
@@ -118,6 +124,11 @@ public class MainActivity extends AppCompatActivity {
                 Log.v("xyzyx", t.getLocalizedMessage());
             }
         });*/
+    }
+
+    private void openAddImagenActivity() {
+        Intent intent = new Intent(this, AddImagenActivity.class);
+        startActivity(intent);
     }
 
     private void openAddActivity() {

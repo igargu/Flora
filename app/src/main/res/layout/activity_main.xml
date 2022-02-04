@@ -33,4 +33,18 @@
         app:srcCompat="@android:drawable/ic_input_add"
         tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck"
         android:contentDescription="@string/contentDescription_fabAdd" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabImagen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="15dp"
+        android:clickable="true"
+        android:contentDescription="@string/contentDescription_fabImagen"
+        app:layout_constraintBottom_toTopOf="@+id/fabAdd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline_upload_24"
+        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck"
+        android:focusable="true" />
 </androidx.constraintlayout.widget.ConstraintLayout>

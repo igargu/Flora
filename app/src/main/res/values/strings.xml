@@ -24,6 +24,7 @@
     <string name="etNombre">Nombre</string>
     <string name="btAdd">Add</string>
     <string name="contentDescription_fabAdd">Add icon</string>
+    <string name="contentDescription_fabImagen">Upload icon</string>
     <string name="etIdImagen">Id Imagen</string>
     <string name="etNombreImagen">Nombre Imagen</string>
     <string name="btSelectImagen">Select Imagen</string>

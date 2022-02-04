@@ -129,7 +129,13 @@ public class Repository {
 
     }
 
-    public void subirImagen(File file, Imagen imagen) {
+    public void saveImagen(Intent intent, Imagen imagen) {
+        copyData(intent, imagen.nombre);
+        File file = new File(context.getExternalFilesDir(null), imagen.nombre);
+        subirImagen(file, imagen);
+    }
+
+    private void subirImagen(File file, Imagen imagen) {
         RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("photo", file.getName(), requestFile);
         Call<Long> call = floraClient.subirImagen(body, imagen.idflora, imagen.descripcion);
@@ -146,7 +152,7 @@ public class Repository {
         });
     }
 
-    public boolean copyData(Intent data, String name) {
+    private boolean copyData(Intent data, String name) {
         boolean result = true;
         Uri uri = data.getData();
         InputStream in = null;
