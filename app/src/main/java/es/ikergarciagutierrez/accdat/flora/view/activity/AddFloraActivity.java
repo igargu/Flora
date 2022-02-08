@@ -96,7 +96,7 @@ public class AddFloraActivity extends AppCompatActivity {
 
     private void defineButtonCancelarAñadirListener() {
         btCancelarAñadir.setOnClickListener(v -> {
-
+            finish();
         });
     }
 }
