@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     tools:context=".view.activity.AddFloraActivity">
 
     <TextView
@@ -12,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="@string/tvAddFloraTitle"
+        android:textColor="@color/primary_dark_color"
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -45,6 +47,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp"
                 android:hint="@string/hintFloraNombre"
+                android:textColorHint="@color/primary_dark_color"
+                app:boxStrokeWidth="3dp"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -54,6 +58,7 @@
                     android:id="@+id/etFloraNombre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     tools:ignore="TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -67,6 +72,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp"
                 android:hint="@string/hintFloraFamilia"
+                android:textColorHint="@color/primary_dark_color"
+                app:boxStrokeWidth="3dp"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -76,6 +83,7 @@
                     android:id="@+id/etFloraFamilia"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     tools:ignore="TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -89,6 +97,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp"
                 android:hint="@string/hintFloraIdentificacion"
+                android:textColorHint="@color/primary_dark_color"
+                app:boxStrokeWidth="3dp"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -98,6 +108,7 @@
                     android:id="@+id/etFloraIdentificacion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     tools:ignore="TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -111,6 +122,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp"
                 android:hint="@string/hintFloraAltitud"
+                android:textColorHint="@color/primary_dark_color"
+                app:boxStrokeWidth="3dp"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -120,6 +133,7 @@
                     android:id="@+id/etFloraAltitud"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     tools:ignore="TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -133,6 +147,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp"
                 android:hint="@string/hintFloraHabitat"
+                android:textColorHint="@color/primary_dark_color"
+                app:boxStrokeWidth="3dp"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -142,6 +158,7 @@
                     android:id="@+id/etFloraHabitat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     tools:ignore="TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -155,6 +172,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp"
                 android:hint="@string/hintFloraFitosociologia"
+                android:textColorHint="@color/primary_dark_color"
+                app:boxStrokeWidth="3dp"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -164,6 +183,7 @@
                     android:id="@+id/etFloraFitosociologia"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     tools:ignore="TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -177,6 +197,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp"
                 android:hint="@string/hintFloraBiotipo"
+                android:textColorHint="@color/primary_dark_color"
+                app:boxStrokeWidth="3dp"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -186,6 +208,7 @@
                     android:id="@+id/etFloraBiotipo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     tools:ignore="TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -199,6 +222,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp"
                 android:hint="@string/hintFloraBiologiaReproductiva"
+                android:textColorHint="@color/primary_dark_color"
+                app:boxStrokeWidth="3dp"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -208,6 +233,7 @@
                     android:id="@+id/etFloraBiologiaReproductiva"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     tools:ignore="TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -221,6 +247,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp"
                 android:hint="@string/hintFloraFloración"
+                android:textColorHint="@color/primary_dark_color"
+                app:boxStrokeWidth="3dp"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -230,6 +258,7 @@
                     android:id="@+id/etFloraFloración"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     tools:ignore="TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -243,6 +272,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp"
                 android:hint="@string/hintFloraFructificacion"
+                android:textColorHint="@color/primary_dark_color"
+                app:boxStrokeWidth="3dp"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -252,6 +283,7 @@
                     android:id="@+id/etFloraFructificacion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     tools:ignore="TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -265,6 +297,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp"
                 android:hint="@string/hintFloraExpresionSexual"
+                android:textColorHint="@color/primary_dark_color"
+                app:boxStrokeWidth="3dp"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -274,6 +308,7 @@
                     android:id="@+id/etFloraExpresionSexual"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     tools:ignore="TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -287,6 +322,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp"
                 android:hint="@string/hintFloraPolinizacion"
+                android:textColorHint="@color/primary_dark_color"
+                app:boxStrokeWidth="3dp"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -296,6 +333,7 @@
                     android:id="@+id/etFloraPolinizacion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     tools:ignore="TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -309,6 +347,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp"
                 android:hint="@string/hintFloraDispersion"
+                android:textColorHint="@color/primary_dark_color"
+                app:boxStrokeWidth="3dp"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -318,6 +358,7 @@
                     android:id="@+id/etFloraDispersion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     tools:ignore="TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -331,6 +372,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp"
                 android:hint="@string/hintFloraNumCromosomatico"
+                android:textColorHint="@color/primary_dark_color"
+                app:boxStrokeWidth="3dp"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -340,6 +383,7 @@
                     android:id="@+id/etFloraNumCromosomatico"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     tools:ignore="TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -353,6 +397,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp"
                 android:hint="@string/hintFloraReproduccionAsexual"
+                android:textColorHint="@color/primary_dark_color"
+                app:boxStrokeWidth="3dp"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -362,6 +408,7 @@
                     android:id="@+id/etFloraReproduccionAsexual"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     tools:ignore="TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -375,6 +422,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp"
                 android:hint="@string/hintFloraDistribucion"
+                android:textColorHint="@color/primary_dark_color"
+                app:boxStrokeWidth="3dp"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -384,6 +433,7 @@
                     android:id="@+id/etFloraDistribucion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     tools:ignore="TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -397,6 +447,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp"
                 android:hint="@string/hintFloraBiologia"
+                android:textColorHint="@color/primary_dark_color"
+                app:boxStrokeWidth="3dp"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -406,6 +458,7 @@
                     android:id="@+id/etFloraBiologia"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     tools:ignore="TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -419,6 +472,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp"
                 android:hint="@string/hintFloraDemografia"
+                android:textColorHint="@color/primary_dark_color"
+                app:boxStrokeWidth="3dp"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -428,6 +483,7 @@
                     android:id="@+id/etFloraDemografia"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     tools:ignore="TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -441,6 +497,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp"
                 android:hint="@string/hintFloraAmenazas"
+                android:textColorHint="@color/primary_dark_color"
+                app:boxStrokeWidth="3dp"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -450,6 +508,7 @@
                     android:id="@+id/etFloraAmenazas"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     tools:ignore="TextContrastCheck" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -463,6 +522,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp"
                 android:hint="@string/hintFloraMedidasPropuestas"
+                android:textColorHint="@color/primary_dark_color"
+                app:boxStrokeWidth="3dp"
                 app:errorEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -473,7 +534,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
-                    tools:ignore="TextContrastCheck" />
+                    tools:ignore="TextContrastCheck"
+                    android:textColor="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
@@ -487,8 +549,12 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/btCancelarAñadir"
+        android:textColor="@color/primary_color"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/primary_color"
+        app:strokeWidth="2dp"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/btAñadir"
@@ -497,7 +563,9 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/btAñadir"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
