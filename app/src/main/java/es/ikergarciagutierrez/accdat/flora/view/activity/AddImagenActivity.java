@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import es.ikergarciagutierrez.accdat.flora.R;
 import es.ikergarciagutierrez.accdat.flora.model.entity.Imagen;
@@ -18,7 +19,8 @@ import es.ikergarciagutierrez.accdat.flora.viewmodel.AddImagenViewModel;
 
 public class AddImagenActivity extends AppCompatActivity {
 
-    private Button btSelectImagen, btAddImagen;
+    private Button btAddImagen;
+    private ImageView ivSelectImagen;
     private EditText etIdImagen, etNombreImagen, etDescripcionImagen;
     private String idImagen, nombre, descripcion;
     private ActivityResultLauncher<Intent> launcher;
@@ -35,12 +37,12 @@ public class AddImagenActivity extends AppCompatActivity {
     private void initialize() {
         launcher = getLauncher();
 
-        btSelectImagen = findViewById(R.id.btSelectImagen);
-        btSelectImagen.setOnClickListener(v -> {
+        ivSelectImagen = findViewById(R.id.ivSelectImagen);
+        ivSelectImagen.setOnClickListener(v -> {
             selectImage();
         });
 
-        btAddImagen = findViewById(R.id.btAddImagen);
+        btAddImagen = findViewById(R.id.btAñadir);
         btAddImagen.setOnClickListener(v -> {
             uploadDataImage();
         });

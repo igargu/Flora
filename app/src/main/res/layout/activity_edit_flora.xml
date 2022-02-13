@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color">
+
+    <ImageView
+        android:id="@+id/ivFlora"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_weight="1"
+        android:contentDescription="@string/contentDescription_ivFlora"
+        android:paddingStart="0dp"
+        android:paddingEnd="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ImageContrastCheck"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvEditFloraTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/tvEditFloraTitle"
+        android:textColor="@color/primary_dark_color"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivFlora" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="68dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvEditFloraTitle">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilFloraNombre"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/hintFloraNombre"
+                    android:padding="5dp"
+                    android:textColorHint="@color/primary_dark_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFloraNombre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="@string/floraNombre"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilFloraFamilia"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/hintFloraFamilia"
+                    android:padding="5dp"
+                    android:textColorHint="@color/primary_dark_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFloraFamilia"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="@string/floraFamilia"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilFloraIdentificacion"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/hintFloraIdentificacion"
+                    android:padding="5dp"
+                    android:textColorHint="@color/primary_dark_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFloraIdentificacion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="@string/floraIdentificacion"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilFloraAltitud"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/hintFloraAltitud"
+                    android:padding="5dp"
+                    android:textColorHint="@color/primary_dark_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFloraAltitud"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="@string/floraAltitud"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilFloraHabitat"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/hintFloraHabitat"
+                    android:padding="5dp"
+                    android:textColorHint="@color/primary_dark_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFloraHabitat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="@string/floraHabitat"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilFloraFitosociologia"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/hintFloraFitosociologia"
+                    android:padding="5dp"
+                    android:textColorHint="@color/primary_dark_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFloraFitosociologia"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="@string/floraFitosociologia"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilFloraBiotipo"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/hintFloraBiotipo"
+                    android:padding="5dp"
+                    android:textColorHint="@color/primary_dark_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFloraBiotipo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="@string/floraBiotipo"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilFloraBiologiaReproductiva"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/hintFloraBiologiaReproductiva"
+                    android:padding="5dp"
+                    android:textColorHint="@color/primary_dark_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFloraBiologiaReproductiva"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="@string/floraBiologiaReproductiva"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilFloraFloracion"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/hintFloraFloracion"
+                    android:padding="5dp"
+                    android:textColorHint="@color/primary_dark_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFloraFloracion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="@string/floraFloracion"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilFloraFructificacion"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/hintFloraFructificacion"
+                    android:padding="5dp"
+                    android:textColorHint="@color/primary_dark_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFloraFructificacion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="@string/floraFructificacion"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilFloraExpresionSexual"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/hintFloraExpresionSexual"
+                    android:padding="5dp"
+                    android:textColorHint="@color/primary_dark_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFloraExpresionSexual"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="@string/floraExpresionSexual"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilFloraPolinizacion"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/hintFloraPolinizacion"
+                    android:padding="5dp"
+                    android:textColorHint="@color/primary_dark_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFloraPolinizacion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="@string/floraPolinazcion"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilFloraDispersion"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/hintFloraDispersion"
+                    android:padding="5dp"
+                    android:textColorHint="@color/primary_dark_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFloraDispersion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="@string/floraDispersion"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilFloraNumCromosomatico"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/hintFloraNumCromosomatico"
+                    android:padding="5dp"
+                    android:textColorHint="@color/primary_dark_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFloraNumCromosomatico"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="@string/floraNumCromosomatico"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilFloraReproduccionAsexual"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/hintFloraReproduccionAsexual"
+                    android:padding="5dp"
+                    android:textColorHint="@color/primary_dark_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFloraReproduccionAsexual"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="@string/floraReproduccionAsexual"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilFloraDistribucion"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/hintFloraDistribucion"
+                    android:padding="5dp"
+                    android:textColorHint="@color/primary_dark_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFloraDistribucion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="@string/floraDistribucion"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilFloraBiologia"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/hintFloraBiologia"
+                    android:padding="5dp"
+                    android:textColorHint="@color/primary_dark_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFloraBiologia"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="@string/floraBiologia"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilFloraDemografia"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/hintFloraDemografia"
+                    android:padding="5dp"
+                    android:textColorHint="@color/primary_dark_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFloraDemografia"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="@string/floraDemografia"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilFloraAmenazas"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/hintFloraAmenazas"
+                    android:padding="5dp"
+                    android:textColorHint="@color/primary_dark_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFloraAmenazas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="@string/floraAmenazas"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilFloraMedidasPropuestas"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/hintFloraMedidasPropuestas"
+                    android:padding="5dp"
+                    android:textColorHint="@color/primary_dark_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFloraMedidasPropuestas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:text="@string/floraMedidasPropuestas"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btBorrar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="12dp"
+        android:text="@string/btBorrar"
+        android:textColor="@color/white"
+        android:visibility="visible"
+        app:icon="@drawable/ic_baseline_delete_24"
+        app:iconTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btEditar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/btEditar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
+        android:text="@string/btEditar"
+        android:textColor="@color/white"
+        android:visibility="visible"
+        app:icon="@drawable/ic_baseline_edit_24"
+        app:iconTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btBorrar"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/btCancelarEdicion"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="12dp"
+        android:text="@string/btCancelar"
+        android:textColor="@color/primary_color"
+        android:visibility="gone"
+        app:icon="@drawable/ic_baseline_cancel_24"
+        app:iconTint="@color/primary_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btGuardarEdicion"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/primary_color"
+        app:strokeWidth="2dp"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/btGuardarEdicion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
+        android:text="@string/btGuardar"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        app:icon="@drawable/ic_baseline_save_24"
+        app:iconTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btCancelarEdicion"
+        tools:ignore="TextContrastCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

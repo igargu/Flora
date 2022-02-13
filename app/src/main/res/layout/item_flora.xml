@@ -3,295 +3,76 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/background_color">
 
     <ImageView
         android:id="@+id/ivFlora"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         android:contentDescription="@string/contentDescription_ivFlora"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ImageContrastCheck"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/tvNombre"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilFloraNombre"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/tvNombre"
-        android:textColor="@color/primary_dark_color"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_weight="1"
+        android:hint="@string/hintFloraNombre"
+        android:padding="5dp"
+        android:textColorHint="@color/primary_dark_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ivFlora"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/tvFamilia"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etFloraNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="@string/floraNombre"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilFloraFamilia"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/tvFamilia"
-        android:textColor="@color/primary_dark_color"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_weight="1"
+        android:hint="@string/hintFloraFamilia"
+        android:padding="5dp"
+        android:textColorHint="@color/primary_dark_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ivFlora"
-        app:layout_constraintTop_toBottomOf="@+id/tvNombre" />
+        app:layout_constraintTop_toBottomOf="@+id/tilFloraNombre">
 
-    <TextView
-        android:id="@+id/tvIdentificacion"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/tvIdentificacion"
-        android:textColor="@color/primary_dark_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ivFlora"
-        app:layout_constraintTop_toBottomOf="@+id/tvFamilia" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etFloraFamilia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="@string/floraFamilia"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            tools:ignore="TextContrastCheck,SpeakableTextPresentCheck" />
 
-    <TextView
-        android:id="@+id/tvAltitud"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/tvAltitud"
-        android:textColor="@color/primary_dark_color"
-        app:layout_constraintEnd_toStartOf="@+id/tvHabitat"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivFlora" />
-
-    <TextView
-        android:id="@+id/tvHabitat"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/tvHabitat"
-        android:textColor="@color/primary_dark_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tvAltitud"
-        app:layout_constraintTop_toBottomOf="@+id/ivFlora" />
-
-    <TextView
-        android:id="@+id/tvFitosociologia"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/tvFitosociologia"
-        android:textColor="@color/primary_dark_color"
-        app:layout_constraintEnd_toStartOf="@+id/tvBiotipo"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAltitud" />
-
-    <TextView
-        android:id="@+id/tvBiotipo"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/tvBiotipo"
-        android:textColor="@color/primary_dark_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tvFitosociologia"
-        app:layout_constraintTop_toBottomOf="@+id/tvHabitat" />
-
-    <TextView
-        android:id="@+id/tvBiologiaReproductiva"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/tvBiologiaReproductiva"
-        android:textColor="@color/primary_dark_color"
-        app:layout_constraintEnd_toStartOf="@+id/tvFloracion"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvFitosociologia" />
-
-    <TextView
-        android:id="@+id/tvFloracion"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/tvFloracion"
-        android:textColor="@color/primary_dark_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tvBiologiaReproductiva"
-        app:layout_constraintTop_toBottomOf="@+id/tvBiotipo" />
-
-    <TextView
-        android:id="@+id/tvFructificacion"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/tvFructificacion"
-        android:textColor="@color/primary_dark_color"
-        app:layout_constraintEnd_toStartOf="@+id/tvExpresionSexual"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvBiologiaReproductiva" />
-
-    <TextView
-        android:id="@+id/tvExpresionSexual"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/tvExpresionSexual"
-        android:textColor="@color/primary_dark_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tvFructificacion"
-        app:layout_constraintTop_toBottomOf="@+id/tvFloracion" />
-
-    <TextView
-        android:id="@+id/tvPolinizacion"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/tvPolinazcion"
-        android:textColor="@color/primary_dark_color"
-        app:layout_constraintEnd_toStartOf="@+id/tvDispersion"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvFructificacion" />
-
-    <TextView
-        android:id="@+id/tvDispersion"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/tvDispersion"
-        android:textColor="@color/primary_dark_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tvPolinizacion"
-        app:layout_constraintTop_toBottomOf="@+id/tvExpresionSexual" />
-
-    <TextView
-        android:id="@+id/tvNumeroCromosomatico"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/tvNumeroCromosomatico"
-        android:textColor="@color/primary_dark_color"
-        app:layout_constraintEnd_toStartOf="@+id/tvReproduccionAsexual"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPolinizacion" />
-
-    <TextView
-        android:id="@+id/tvReproduccionAsexual"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/tvReproduccionAsexual"
-        android:textColor="@color/primary_dark_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tvNumeroCromosomatico"
-        app:layout_constraintTop_toBottomOf="@+id/tvDispersion" />
-
-    <TextView
-        android:id="@+id/tvDistribucion"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/tvDistribucion"
-        android:textColor="@color/primary_dark_color"
-        app:layout_constraintEnd_toStartOf="@+id/tvBiologia"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvNumeroCromosomatico" />
-
-    <TextView
-        android:id="@+id/tvBiologia"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/tvBiologia"
-        android:textColor="@color/primary_dark_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tvDistribucion"
-        app:layout_constraintTop_toBottomOf="@+id/tvReproduccionAsexual" />
-
-    <TextView
-        android:id="@+id/tvDemografia"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/tvDemografia"
-        android:textColor="@color/primary_dark_color"
-        app:layout_constraintEnd_toStartOf="@+id/tvAmenazas"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDistribucion" />
-
-    <TextView
-        android:id="@+id/tvAmenazas"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/tvAmenazas"
-        android:textColor="@color/primary_dark_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tvDemografia"
-        app:layout_constraintTop_toBottomOf="@+id/tvBiologia" />
-
-    <TextView
-        android:id="@+id/tvMedidasPropuestas"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:text="@string/tvMedidasPropuestas"
-        android:textColor="@color/primary_dark_color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDemografia" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

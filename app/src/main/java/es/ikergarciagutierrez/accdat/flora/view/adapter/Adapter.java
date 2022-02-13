@@ -33,26 +33,8 @@ public class Adapter extends RecyclerView.Adapter<FloraViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull FloraViewHolder holder, int position) {
         Flora flora = floraList.get(position);
-        holder.tvNombre.setText(flora.getNombre());
-        holder.tvFamilia.setText(flora.getFamilia());
-        holder.tvIdentificacion.setText(flora.getIdentificacion());
-        holder.tvAltitud.setText(flora.getAltitud());
-        holder.tvHabitat.setText(flora.getHabitat());
-        holder.tvFitosociologia.setText(flora.getFitosociologia());
-        holder.tvBiotipo.setText(flora.getBiotopo());
-        holder.tvBiologiaReproductiva.setText(flora.getBiologia_reproductiva());
-        holder.tvFloracion.setText(flora.getFloracion());
-        holder.tvFructificacion.setText(flora.getFructificacion());
-        holder.tvExpresionSexual.setText(flora.getExpresion_sexual());
-        holder.tvPolinizacion.setText(flora.getPolinizacion());
-        holder.tvDispersion.setText(flora.getDispersion());
-        holder.tvNumeroCromosomatico.setText(flora.getNumero_cromosomico());
-        holder.tvReproduccionAsexual.setText(flora.getReproduccion_asexual());
-        holder.tvDistribucion.setText(flora.getDistribucion());
-        holder.tvBiologia.setText(flora.getBiologia());
-        holder.tvDemografia.setText(flora.getDemografia());
-        holder.tvAmenazas.setText(flora.getAmenazas());
-        holder.tvMedidasPropuestas.setText(flora.getMedidas_propuestas());
+        holder.etFloraNombre.setText(flora.getNombre());
+        holder.etFloraFamilia.setText(flora.getFamilia());
         // holder.ivFlora.setImageResource();
     }
 
