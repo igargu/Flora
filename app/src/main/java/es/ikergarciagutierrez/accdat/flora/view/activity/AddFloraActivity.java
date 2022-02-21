@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +18,9 @@ import es.ikergarciagutierrez.accdat.flora.viewmodel.AddFloraViewModel;
 
 public class AddFloraActivity extends AppCompatActivity {
 
-    private AddFloraViewModel avm;
+    private Context context;
+    private Flora flora;
+    private AddFloraViewModel afvm;
     private EditText etNombre, etFamilia, etIdentificacion, etAltitud, etHabitat, etFitosociologia,
             etBiotipo, etBioReproductiva, etFloracion, etFructificacion, etExpSexual, etPolinizacion,
             etDispersion, etNumCromosomatico, etRepAsexual, etDistribucion, etBiologia, etDemografia,
@@ -27,16 +31,17 @@ public class AddFloraActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_flora);
+        context = this;
         initialize();
     }
 
     private void initialize() {
-        avm = new ViewModelProvider(this).get(AddFloraViewModel.class);
-        avm.getAddFloraLiveData().observe(this, aLong -> {
+        afvm = new ViewModelProvider(this).get(AddFloraViewModel.class);
+        afvm.getAddFloraLiveData().observe(this, aLong -> {
             if (aLong > 0) {
                 finish();
             } else {
-                Toast.makeText(AddFloraActivity.this, "Error", Toast.LENGTH_LONG).show();
+                Toast.makeText(AddFloraActivity.this, R.string.toast_error, Toast.LENGTH_LONG).show();
             }
         });
 
@@ -60,6 +65,7 @@ public class AddFloraActivity extends AppCompatActivity {
         etDemografia = findViewById(R.id.etFloraDemografia);
         etAmenazas = findViewById(R.id.etFloraAmenazas);
         etMedPropuestas = findViewById(R.id.etFloraMedidasPropuestas);
+
         btCancelarAñadir = findViewById(R.id.btCancelarAñadir);
         btAñadir = findViewById(R.id.btAñadir);
 
@@ -69,34 +75,59 @@ public class AddFloraActivity extends AppCompatActivity {
 
     private void defineButtonAñadirListener() {
         btAñadir.setOnClickListener(v -> {
-            Flora flora = new Flora();
-            flora.setNombre(etNombre.getText().toString());
-            flora.setFamilia(etFamilia.getText().toString());
-            flora.setIdentificacion(etIdentificacion.getText().toString());
-            flora.setAltitud(etAltitud.getText().toString());
-            flora.setHabitat(etHabitat.getText().toString());
-            flora.setFitosociologia(etFitosociologia.getText().toString());
-            flora.setBiotopo(etBiotipo.getText().toString());
-            flora.setBiologia_reproductiva(etBioReproductiva.getText().toString());
-            flora.setFloracion(etFloracion.getText().toString());
-            flora.setFructificacion(etFructificacion.getText().toString());
-            flora.setExpresion_sexual(etExpSexual.getText().toString());
-            flora.setPolinizacion(etPolinizacion.getText().toString());
-            flora.setDispersion(etDispersion.getText().toString());
-            flora.setNumero_cromosomico(etNumCromosomatico.getText().toString());
-            flora.setReproduccion_asexual(etRepAsexual.getText().toString());
-            flora.setDistribucion(etDistribucion.getText().toString());
-            flora.setBiologia(etBiologia.getText().toString());
-            flora.setDemografia(etDemografia.getText().toString());
-            flora.setAmenazas(etAmenazas.getText().toString());
-            flora.setMedidas_propuestas(etMedPropuestas.getText().toString());
-            avm.createFlora(flora);
+            new AlertDialog.Builder(context)
+                    .setTitle(R.string.alertDialogAñadir_title)
+                    .setMessage(R.string.alertDialogAñadir_message)
+                    .setPositiveButton(R.string.alertDialog_confirmar, (dialog, which) -> {
+                        Flora flora = getFlora();
+                        afvm.createFlora(flora);
+                        Toast.makeText(context, R.string.toast_añadirFlora, Toast.LENGTH_LONG).show();
+                        finish();
+                    })
+                    .setNegativeButton(R.string.alertDialog_cancelar, (dialog, which) -> {
+                        dialog.cancel();
+                    })
+                    .show();
         });
     }
 
     private void defineButtonCancelarAñadirListener() {
         btCancelarAñadir.setOnClickListener(v -> {
-            finish();
+            new AlertDialog.Builder(context)
+                    .setTitle(R.string.alertDialogCancelarAñadir_title)
+                    .setMessage(R.string.alertDialogCancelarAñadir_message)
+                    .setPositiveButton(R.string.alertDialog_confirmar, (dialog, which) -> {
+                        finish();
+                    })
+                    .setNegativeButton(R.string.alertDialog_cancelar, (dialog, which) -> {
+                        dialog.cancel();
+                    })
+                    .show();
         });
+    }
+
+    private Flora getFlora() {
+        flora = new Flora();
+        flora.setNombre(etNombre.getText().toString());
+        flora.setFamilia(etFamilia.getText().toString());
+        flora.setIdentificacion(etIdentificacion.getText().toString());
+        flora.setAltitud(etAltitud.getText().toString());
+        flora.setHabitat(etHabitat.getText().toString());
+        flora.setFitosociologia(etFitosociologia.getText().toString());
+        flora.setBiotopo(etBiotipo.getText().toString());
+        flora.setBiologia_reproductiva(etBioReproductiva.getText().toString());
+        flora.setFloracion(etFloracion.getText().toString());
+        flora.setFructificacion(etFructificacion.getText().toString());
+        flora.setExpresion_sexual(etExpSexual.getText().toString());
+        flora.setPolinizacion(etPolinizacion.getText().toString());
+        flora.setDispersion(etDispersion.getText().toString());
+        flora.setNumero_cromosomico(etNumCromosomatico.getText().toString());
+        flora.setReproduccion_asexual(etRepAsexual.getText().toString());
+        flora.setDistribucion(etDistribucion.getText().toString());
+        flora.setBiologia(etBiologia.getText().toString());
+        flora.setDemografia(etDemografia.getText().toString());
+        flora.setAmenazas(etAmenazas.getText().toString());
+        flora.setMedidas_propuestas(etMedPropuestas.getText().toString());
+        return flora;
     }
 }

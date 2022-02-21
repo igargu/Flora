@@ -56,4 +56,20 @@
     <string name="btGuardar">Guardar</string>
     <string name="contentDescription_ivSelectImagen">ivSelectImagen</string>
     <string name="tvUploadImagenTitle"><u>Subir imagen</u></string>
+    <string name="alertDialog_cancelar">Cancelar</string>
+    <string name="alertDialog_confirmar">Confirmar</string>
+    <string name="alertDialogBorrar_message">¡Perderás estos datos!</string>
+    <string name="alertDialogEditar_message">Habilitarás la edición de datos</string>
+    <string name="alertDialogCancelarEdicion_message">¡Perderás los cambios realizados!</string>
+    <string name="alertDialogCancelarEdicion_title">¿Cancelar edición?</string>
+    <string name="alertDialogGuardarEdicion_title">¿Guardar edición?</string>
+    <string name="alertDialogGuardarEdicion_message">Se aplicarán los cambios realizados</string>
+    <string name="alertDialogAñadir_title">¿Añadir estos datos?</string>
+    <string name="alertDialogCancelarAñadir_title">¿Deseas no añadir estos datos?</string>
+    <string name="alertDialogCancelarAñadir_message">¡Perderás los cambios realizados!</string>
+    <string name="alertDialogAñadir_message">Serán guardado en la base de datos</string>
+    <string name="toast_añadirFlora">Datos añadidos</string>
+    <string name="toast_editarFlora">Datos editados</string>
+    <string name="toast_borrarFlora">Datos borrados</string>
+    <string name="toast_error">Error</string>
 </resources>

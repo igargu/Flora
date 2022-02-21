@@ -37,6 +37,7 @@ public class Repository {
     private static FloraClient floraClient;
 
     private MutableLiveData<ArrayList<Flora>> floraLiveData = new MutableLiveData<>();
+    private MutableLiveData<Flora> floraLiveDataId = new MutableLiveData<>();
     private MutableLiveData<Long> addFloraLiveData = new MutableLiveData<>();
     private MutableLiveData<Long> addImagenLiveData = new MutableLiveData<>();
 
@@ -74,6 +75,10 @@ public class Repository {
         return floraLiveData;
     }
 
+    public MutableLiveData<Flora> getFloraLiveDataId() {
+        return floraLiveDataId;
+    }
+
     public MutableLiveData<Long> getAddFloraLiveData() {
         return addFloraLiveData;
     }
@@ -88,7 +93,19 @@ public class Repository {
 
 
     public void getFlora(long id) {
+        Call<Flora> call = floraClient.getFlora(id);
+        call.enqueue(new Callback<Flora>() {
+            @Override
+            public void onResponse(Call<Flora> call, Response<Flora> response) {
+                floraLiveDataId.setValue(response.body());
+                Log.v("xyzyx", response.body().toString());
+            }
 
+            @Override
+            public void onFailure(Call<Flora> call, Throwable t) {
+                Log.v("xyzyx", t.getLocalizedMessage());
+            }
+        });
     }
 
     /**
