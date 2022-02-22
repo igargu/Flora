@@ -232,13 +232,13 @@ public class EditFloraActivity extends AppCompatActivity {
     }
 
     private void setFlora() {
-        efvm.getFloraLiveDataId().observe(this, aLong -> {
+        /*efvm.getFloraLiveDataId().observe(this, aLong -> {
             if (aLong > 0) {
                 finish();
             } else {
                 Toast.makeText(EditFloraActivity.this, R.string.toast_error, Toast.LENGTH_LONG).show();
             }
-        });
+        });*/
 
         etNombre.setText(flora.getNombre());
         etFamilia.setText(flora.getFamilia());

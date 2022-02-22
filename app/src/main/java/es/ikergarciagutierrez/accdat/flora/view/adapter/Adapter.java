@@ -1,23 +1,34 @@
 package es.ikergarciagutierrez.accdat.flora.view.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import es.ikergarciagutierrez.accdat.flora.R;
 import es.ikergarciagutierrez.accdat.flora.model.entity.Flora;
+import es.ikergarciagutierrez.accdat.flora.model.entity.Imagen;
 import es.ikergarciagutierrez.accdat.flora.view.adapter.viewholder.FloraViewHolder;
+import es.ikergarciagutierrez.accdat.flora.viewmodel.AddFloraViewModel;
+import es.ikergarciagutierrez.accdat.flora.viewmodel.MainActivityViewModel;
 
 public class Adapter extends RecyclerView.Adapter<FloraViewHolder> {
 
-    private List<Flora> floraList;
     private Context context;
+
+    private MainActivityViewModel mavm;
+    private List<Flora> floraList;
+    private List<Imagen> imagenList;
+
+    private View.OnClickListener listener;
 
     public Adapter(Context context) {
         this.context = context;
@@ -32,10 +43,16 @@ public class Adapter extends RecyclerView.Adapter<FloraViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull FloraViewHolder holder, int position) {
+
+        //mavm = new ViewModelProvider(context).get(MainActivityViewModel.class);
+        floraList = mavm.getFloraLiveData().getValue();
+
         Flora flora = floraList.get(position);
+        Imagen imagen = imagenList.get(position);
+
         holder.etFloraNombre.setText(flora.getNombre());
         holder.etFloraFamilia.setText(flora.getFamilia());
-        // holder.ivFlora.setImageResource();
+        // holder.ivFlora.setImageResource(Integer.parseInt(imagen.getNombre()));
     }
 
     @Override
@@ -49,5 +66,15 @@ public class Adapter extends RecyclerView.Adapter<FloraViewHolder> {
     public void setFloraList(List<Flora> floraList) {
         this.floraList = floraList;
         notifyDataSetChanged();
+    }
+
+    public void setOnClickListener(View.OnClickListener listener) {
+        this.listener = listener;
+    }
+    
+    public void onClick(View view) {
+        if (listener != null) {
+            listener.onClick(view);
+        }
     }
 }

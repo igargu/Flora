@@ -68,7 +68,5 @@ public class MainActivity extends AppCompatActivity {
 }
 
 /*
-
     Autentizicación desde Laravel y desde Retrofit
-
  */
