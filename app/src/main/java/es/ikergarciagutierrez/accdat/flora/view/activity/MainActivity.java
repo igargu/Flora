@@ -1,6 +1,7 @@
 package es.ikergarciagutierrez.accdat.flora.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +14,8 @@ import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.List;
+
 import es.ikergarciagutierrez.accdat.flora.R;
 import es.ikergarciagutierrez.accdat.flora.model.api.FloraClient;
 import es.ikergarciagutierrez.accdat.flora.view.activity.AddFloraActivity;
@@ -23,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Context context;
     private RecyclerView recyclerView;
+    MainActivityViewModel mavm;
     private FloatingActionButton fabAdd;
     private FloatingActionButton fabImagen;
 
@@ -43,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
 
         fabAdd = findViewById(R.id.fabAdd);
         fabImagen = findViewById(R.id.fabImagen);
+
+        LiveData<List<Flora>> listaFlora = mavm.getFloraLiveData().getValue();
+        listaFlora.observe(this, floras -> {
+            adapter.setFloraList(floras);
+        });
 
         defineFABAddListener();
         defineFABImagenListener();

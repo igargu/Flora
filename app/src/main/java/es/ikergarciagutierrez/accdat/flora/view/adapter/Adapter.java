@@ -24,7 +24,6 @@ public class Adapter extends RecyclerView.Adapter<FloraViewHolder> {
 
     private Context context;
 
-    private MainActivityViewModel mavm;
     private List<Flora> floraList;
     private List<Imagen> imagenList;
 
@@ -43,9 +42,6 @@ public class Adapter extends RecyclerView.Adapter<FloraViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull FloraViewHolder holder, int position) {
-
-        //mavm = new ViewModelProvider(context).get(MainActivityViewModel.class);
-        floraList = mavm.getFloraLiveData().getValue();
 
         Flora flora = floraList.get(position);
         Imagen imagen = imagenList.get(position);
