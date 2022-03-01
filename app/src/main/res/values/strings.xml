@@ -72,4 +72,14 @@
     <string name="toast_editarFlora">Datos editados</string>
     <string name="toast_borrarFlora">Datos borrados</string>
     <string name="toast_error">Error</string>
+    <string name="toast_errorWiki">El campo Nombre se encuentra vacío</string>
+    <string name="tvMoreInfo">Pulsa aquí para obtener más información</string>
+    <string name="alertDialog_flora">Flora</string>
+    <string name="alertDialog_imagen">Imagen</string>
+    <string name="alertDialogMain_message">¿Qué datos desea ver?</string>
+    <string name="alertDialogMain_title">Información detallada</string>
+    <string name="hintIdFlora">Id flora</string>
+    <string name="toast_reload">Recargando...</string>
+    <string name="toast_fieldsEmpty">No puede haber campos vacíos</string>
+    <string name="toast_añadirImagen">Imagen añadida</string>
 </resources>

@@ -79,10 +79,13 @@ public class AddFloraActivity extends AppCompatActivity {
                     .setTitle(R.string.alertDialogAñadir_title)
                     .setMessage(R.string.alertDialogAñadir_message)
                     .setPositiveButton(R.string.alertDialog_confirmar, (dialog, which) -> {
-                        Flora flora = getFlora();
-                        afvm.createFlora(flora);
-                        Toast.makeText(context, R.string.toast_añadirFlora, Toast.LENGTH_LONG).show();
-                        finish();
+                        if (areFieldsEmpty()) {
+                            afvm.createFlora(getFlora());
+                            Toast.makeText(context, R.string.toast_añadirFlora, Toast.LENGTH_LONG).show();
+                            finish();
+                        } else {
+                            Toast.makeText(context, R.string.toast_fieldsEmpty, Toast.LENGTH_LONG).show();
+                        }
                     })
                     .setNegativeButton(R.string.alertDialog_cancelar, (dialog, which) -> {
                         dialog.cancel();
@@ -104,6 +107,22 @@ public class AddFloraActivity extends AppCompatActivity {
                     })
                     .show();
         });
+    }
+
+    private boolean areFieldsEmpty() {
+        if (etNombre.getText().toString().isEmpty() || etFamilia.getText().toString().isEmpty() ||
+                etIdentificacion.getText().toString().isEmpty() || etAltitud.getText().toString().isEmpty() ||
+                etHabitat.getText().toString().isEmpty() || etFitosociologia.getText().toString().isEmpty() ||
+                etBiotipo.getText().toString().isEmpty() || etBioReproductiva.getText().toString().isEmpty() ||
+                etFloracion.getText().toString().isEmpty() || etFructificacion.getText().toString().isEmpty() ||
+                etExpSexual.getText().toString().isEmpty() || etPolinizacion.getText().toString().isEmpty() ||
+                etDispersion.getText().toString().isEmpty() || etNumCromosomatico.getText().toString().isEmpty() ||
+                etRepAsexual.getText().toString().isEmpty() || etDistribucion.getText().toString().isEmpty() ||
+                etBiologia.getText().toString().isEmpty() || etDemografia.getText().toString().isEmpty() ||
+                etAmenazas.getText().toString().isEmpty() || etMedPropuestas.getText().toString().isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
     private Flora getFlora() {

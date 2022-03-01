@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import es.ikergarciagutierrez.accdat.flora.model.Repository;
 import es.ikergarciagutierrez.accdat.flora.model.entity.Flora;
+import es.ikergarciagutierrez.accdat.flora.model.entity.RowsResponse;
 
 public class EditFloraViewModel extends AndroidViewModel {
 
@@ -18,12 +19,16 @@ public class EditFloraViewModel extends AndroidViewModel {
         repository = new Repository(application);
     }
 
-    public MutableLiveData<Flora> getFloraLiveDataId() {
-        return repository.getFloraLiveDataId();
+    public MutableLiveData<Long> getDeleteFloraLiveData() {
+        return repository.getDeleteFloraLiveData();
     }
 
     public void deleteFlora(long id) {
         repository.deleteFlora(id);
+    }
+
+    public MutableLiveData<Long> getEditFloraLiveData() {
+        return repository.getEditFloraLiveData();
     }
 
     public void editFlora(long id, Flora flora) {

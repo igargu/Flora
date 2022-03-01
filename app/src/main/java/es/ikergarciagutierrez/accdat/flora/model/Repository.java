@@ -14,11 +14,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import es.ikergarciagutierrez.accdat.flora.model.api.FloraClient;
 import es.ikergarciagutierrez.accdat.flora.model.entity.CreateResponse;
 import es.ikergarciagutierrez.accdat.flora.model.entity.Flora;
 import es.ikergarciagutierrez.accdat.flora.model.entity.Imagen;
+import es.ikergarciagutierrez.accdat.flora.model.entity.RowsResponse;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -38,8 +40,15 @@ public class Repository {
 
     private MutableLiveData<ArrayList<Flora>> floraLiveData = new MutableLiveData<>();
     private MutableLiveData<Flora> floraLiveDataId = new MutableLiveData<>();
+
     private MutableLiveData<Long> addFloraLiveData = new MutableLiveData<>();
     private MutableLiveData<Long> addImagenLiveData = new MutableLiveData<>();
+
+    private MutableLiveData<Long> editFloraLiveData = new MutableLiveData<>();
+    private MutableLiveData<Long> editImagenLiveData = new MutableLiveData<>();
+
+    private MutableLiveData<Long> deleteFloraLiveData = new MutableLiveData<>();
+    private MutableLiveData<Long> deleteImagenLiveData = new MutableLiveData<>();
 
     /**
      * Inicialización de las variables estáticas
@@ -67,7 +76,6 @@ public class Repository {
                 .baseUrl("https://informatica.ieszaidinvergeles.org:10008/ad/felixRLDFApp/public/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
         return retrofit.create(FloraClient.class);
     }
 
@@ -87,8 +95,35 @@ public class Repository {
         return addImagenLiveData;
     }
 
-    public void deleteFlora(long id) {
+    public MutableLiveData<Long> getEditFloraLiveData() {
+        return editFloraLiveData;
+    }
 
+    public MutableLiveData<Long> getEditImagenLiveData() {
+        return editImagenLiveData;
+    }
+
+    public MutableLiveData<Long> getDeleteFloraLiveData() {
+        return deleteFloraLiveData;
+    }
+
+    public MutableLiveData<Long> getDeleteImagenLiveData() {
+        return deleteImagenLiveData;
+    }
+
+    public void deleteFlora(long id) {
+        Call<RowsResponse> call = floraClient.deleteFlora(id);
+        call.enqueue(new Callback<RowsResponse>() {
+            @Override
+            public void onResponse(Call<RowsResponse> call, Response<RowsResponse> response) {
+                deleteFloraLiveData.setValue(response.body().rows);
+            }
+
+            @Override
+            public void onFailure(Call<RowsResponse> call, Throwable t) {
+
+            }
+        });
     }
 
 
@@ -143,7 +178,18 @@ public class Repository {
     }
 
     public void editFlora(long id, Flora flora) {
+        Call<RowsResponse> call = floraClient.editFlora(id, flora);
+        call.enqueue(new Callback<RowsResponse>() {
+            @Override
+            public void onResponse(Call<RowsResponse> call, Response<RowsResponse> response) {
+                editFloraLiveData.setValue(response.body().rows);
+            }
 
+            @Override
+            public void onFailure(Call<RowsResponse> call, Throwable t) {
+
+            }
+        });
     }
 
     public void saveImagen(Intent intent, Imagen imagen) {
@@ -191,7 +237,5 @@ public class Repository {
         }
         return result;
     }
-
-
 
 }

@@ -10,9 +10,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import es.ikergarciagutierrez.accdat.flora.R;
 import es.ikergarciagutierrez.accdat.flora.model.entity.Imagen;
@@ -20,13 +23,16 @@ import es.ikergarciagutierrez.accdat.flora.viewmodel.AddImagenViewModel;
 
 public class AddImagenActivity extends AppCompatActivity {
 
-    private Button btAddImagen;
-    private ImageView ivSelectImagen;
-    private EditText etIdImagen, etNombreImagen, etDescripcionImagen;
-    private String idImagen, nombre, descripcion;
     private ActivityResultLauncher<Intent> launcher;
-    private Intent resultadoImagen;
     private AddImagenViewModel aivm;
+
+    private ImageView ivSelectImagen;
+    private AutoCompleteTextView actvIdFlora;
+    private EditText etNombreImagen, etDescripcionImagen;
+    private Button btAddImagen;
+
+    private Intent resultadoImagen = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,24 +42,59 @@ public class AddImagenActivity extends AppCompatActivity {
     }
 
     private void initialize() {
+
         launcher = getLauncher();
+        aivm = new ViewModelProvider(this).get(AddImagenViewModel.class);
 
         ivSelectImagen = findViewById(R.id.ivSelectImagen);
+        actvIdFlora = findViewById(R.id.actvIdFlora);
+        etNombreImagen = findViewById(R.id.etNombreImagen);
+        etDescripcionImagen = findViewById(R.id.etDescripcionImagen);
+        btAddImagen = findViewById(R.id.btAñadir);
+
         ivSelectImagen.setOnClickListener(v -> {
             selectImage();
         });
 
-        btAddImagen = findViewById(R.id.btAñadir);
         btAddImagen.setOnClickListener(v -> {
             uploadDataImage();
         });
 
-        etIdImagen = findViewById(R.id.etIdImagen);
-        etNombreImagen = findViewById(R.id.etNombreImagen);
-        etDescripcionImagen = findViewById(R.id.etDescripcionImagen);
+        String[] type = new String[]{"1"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.list_flora, R.id.tvIdFlora, type);
+        actvIdFlora.setAdapter(adapter);
 
-        aivm = new ViewModelProvider(this).get(AddImagenViewModel.class);
+    }
 
+    private void uploadDataImage() {
+        String idFlora = actvIdFlora.getText().toString();
+        String nombre = etNombreImagen.getText().toString();
+        String descripcion = etDescripcionImagen.getText().toString();
+
+        if (!(nombre.trim().isEmpty() || idFlora.trim().isEmpty() || resultadoImagen == null)) {
+            Imagen imagen = new Imagen();
+            imagen.nombre = nombre;
+            imagen.descripcion = descripcion;
+            imagen.idflora = Long.parseLong(idFlora);
+            aivm.saveImagen(resultadoImagen, imagen);
+            Toast.makeText(this, R.string.toast_añadirImagen, Toast.LENGTH_LONG).show();
+            finish();
+        } else {
+            Toast.makeText(this, R.string.toast_fieldsEmpty, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    ActivityResultLauncher<Intent> getLauncher() {
+        return registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    //respuesta al resultado de haber seleccionado una imagen
+                    if(result.getResultCode() == Activity.RESULT_OK) {
+                        //copyData(result.getData());
+                        resultadoImagen = result.getData();
+                    }
+                }
+        );
     }
 
     Intent getContentIntent() {
@@ -63,36 +104,8 @@ public class AddImagenActivity extends AppCompatActivity {
         return intent;
     }
 
-    ActivityResultLauncher<Intent> getLauncher() {
-        return registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                result -> {
-                    // Respuesta al resultado de haber seleccionado una imagen
-                    if (result.getResultCode() == Activity.RESULT_OK) {
-                        // copyData(result.getData());
-                        resultadoImagen = result.getData();
-                        Imagen imagen = new Imagen();
-                        imagen.nombre = nombre;
-                        imagen.descripcion = descripcion;
-                        imagen.idflora = Long.parseLong(idImagen);
-                        aivm.saveImagen(resultadoImagen, imagen);
-                    }
-                }
-        );
-    }
-
     void selectImage() {
         Intent intent = getContentIntent();
         launcher.launch(intent);
-    }
-
-    private void uploadDataImage() {
-        idImagen = etIdImagen.getText().toString();
-        nombre = etNombreImagen.getText().toString();
-        descripcion = etDescripcionImagen.getText().toString();
-
-        if (!(idImagen.trim().isEmpty() || descripcion.trim().isEmpty() || resultadoImagen == null)) {
-
-        }
     }
 }

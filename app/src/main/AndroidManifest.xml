@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Flora">
         <activity
+            android:name=".view.activity.EditImagenActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.activity.EditFloraActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
