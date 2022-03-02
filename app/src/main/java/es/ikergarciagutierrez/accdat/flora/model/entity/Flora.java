@@ -6,9 +6,9 @@ import android.os.Parcelable;
 public class Flora implements Parcelable {
 
     private long id;
-    private String nombre, familia, identificacion, altitud, habitat, fitosociologia, biotopo,
+    private String nombre, familia, identificacion, altitud, habitat, fitosociologia, biotipo,
             biologia_reproductiva, floracion, fructificacion, expresion_sexual, polinizacion,
-            dispersion, numero_cromosomico, reproduccion_asexual, distribucion, biologia,
+            dispersion, numero_cromosomatico, reproduccion_asexual, distribucion, biologia,
             demografia, amenazas, medidas_propuestas;
 
     public Flora() {
@@ -22,14 +22,14 @@ public class Flora implements Parcelable {
         altitud = in.readString();
         habitat = in.readString();
         fitosociologia = in.readString();
-        biotopo = in.readString();
+        biotipo = in.readString();
         biologia_reproductiva = in.readString();
         floracion = in.readString();
         fructificacion = in.readString();
         expresion_sexual = in.readString();
         polinizacion = in.readString();
         dispersion = in.readString();
-        numero_cromosomico = in.readString();
+        numero_cromosomatico = in.readString();
         reproduccion_asexual = in.readString();
         distribucion = in.readString();
         biologia = in.readString();
@@ -60,14 +60,14 @@ public class Flora implements Parcelable {
                 ", altitud='" + altitud + '\'' +
                 ", habitat='" + habitat + '\'' +
                 ", fitosociologia='" + fitosociologia + '\'' +
-                ", biotopo='" + biotopo + '\'' +
+                ", biotopo='" + biotipo + '\'' +
                 ", biologia_reproductiva='" + biologia_reproductiva + '\'' +
                 ", floracion='" + floracion + '\'' +
                 ", fructificacion='" + fructificacion + '\'' +
                 ", expresion_sexual='" + expresion_sexual + '\'' +
                 ", polinizacion='" + polinizacion + '\'' +
                 ", dispersion='" + dispersion + '\'' +
-                ", numero_cromosomico='" + numero_cromosomico + '\'' +
+                ", numero_cromosomico='" + numero_cromosomatico + '\'' +
                 ", reproduccion_asexual='" + reproduccion_asexual + '\'' +
                 ", distribucion='" + distribucion + '\'' +
                 ", biologia='" + biologia + '\'' +
@@ -89,14 +89,14 @@ public class Flora implements Parcelable {
         this.altitud = altitud;
         this.habitat = habitat;
         this.fitosociologia = fitosociologia;
-        this.biotopo = biotopo;
+        this.biotipo = biotopo;
         this.biologia_reproductiva = biologia_reproductiva;
         this.floracion = floracion;
         this.fructificacion = fructificacion;
         this.expresion_sexual = expresion_sexual;
         this.polinizacion = polinizacion;
         this.dispersion = dispersion;
-        this.numero_cromosomico = numero_cromosomico;
+        this.numero_cromosomatico = numero_cromosomico;
         this.reproduccion_asexual = reproduccion_asexual;
         this.distribucion = distribucion;
         this.biologia = biologia;
@@ -161,12 +161,12 @@ public class Flora implements Parcelable {
         this.fitosociologia = fitosociologia;
     }
 
-    public String getBiotopo() {
-        return biotopo;
+    public String getBiotipo() {
+        return biotipo;
     }
 
-    public void setBiotopo(String biotopo) {
-        this.biotopo = biotopo;
+    public void setBiotipo(String biotipo) {
+        this.biotipo = biotipo;
     }
 
     public String getBiologia_reproductiva() {
@@ -217,12 +217,12 @@ public class Flora implements Parcelable {
         this.dispersion = dispersion;
     }
 
-    public String getNumero_cromosomico() {
-        return numero_cromosomico;
+    public String getNumero_cromosomatico() {
+        return numero_cromosomatico;
     }
 
-    public void setNumero_cromosomico(String numero_cromosomico) {
-        this.numero_cromosomico = numero_cromosomico;
+    public void setNumero_cromosomatico(String numero_cromosomatico) {
+        this.numero_cromosomatico = numero_cromosomatico;
     }
 
     public String getReproduccion_asexual() {
@@ -287,14 +287,14 @@ public class Flora implements Parcelable {
         parcel.writeString(altitud);
         parcel.writeString(habitat);
         parcel.writeString(fitosociologia);
-        parcel.writeString(biotopo);
+        parcel.writeString(biotipo);
         parcel.writeString(biologia_reproductiva);
         parcel.writeString(floracion);
         parcel.writeString(fructificacion);
         parcel.writeString(expresion_sexual);
         parcel.writeString(polinizacion);
         parcel.writeString(dispersion);
-        parcel.writeString(numero_cromosomico);
+        parcel.writeString(numero_cromosomatico);
         parcel.writeString(reproduccion_asexual);
         parcel.writeString(distribucion);
         parcel.writeString(biologia);

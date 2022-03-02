@@ -1,7 +1,6 @@
 package es.ikergarciagutierrez.accdat.flora.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.AlertDialog;
@@ -16,12 +15,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.squareup.picasso.Picasso;
 
 import es.ikergarciagutierrez.accdat.flora.R;
 import es.ikergarciagutierrez.accdat.flora.model.entity.Flora;
 import es.ikergarciagutierrez.accdat.flora.viewmodel.EditFloraViewModel;
-import es.ikergarciagutierrez.accdat.flora.viewmodel.MainActivityViewModel;
 
 public class EditFloraActivity extends AppCompatActivity {
 
@@ -163,7 +162,7 @@ public class EditFloraActivity extends AppCompatActivity {
                     .setPositiveButton(R.string.alertDialog_confirmar, (dialog, which) -> {
                         deshabilitarEdicion();
                         // Guardar cambios
-                        if (areFieldsEmpty()) {
+                        if (!areFieldsEmpty()) {
                             efvm.editFlora(flora.getId(), getFlora());
                             Toast.makeText(context, R.string.toast_editarFlora, Toast.LENGTH_LONG).show();
                         } else {
@@ -248,9 +247,9 @@ public class EditFloraActivity extends AppCompatActivity {
                 etRepAsexual.getText().toString().isEmpty() || etDistribucion.getText().toString().isEmpty() ||
                 etBiologia.getText().toString().isEmpty() || etDemografia.getText().toString().isEmpty() ||
                 etAmenazas.getText().toString().isEmpty() || etMedPropuestas.getText().toString().isEmpty()) {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     private Flora getFlora() {
@@ -263,14 +262,14 @@ public class EditFloraActivity extends AppCompatActivity {
         flora.setAltitud(etAltitud.getText().toString());
         flora.setHabitat(etHabitat.getText().toString());
         flora.setFitosociologia(etFitosociologia.getText().toString());
-        flora.setBiotopo(etBiotipo.getText().toString());
+        flora.setBiotipo(etBiotipo.getText().toString());
         flora.setBiologia_reproductiva(etBioReproductiva.getText().toString());
         flora.setFloracion(etFloracion.getText().toString());
         flora.setFructificacion(etFructificacion.getText().toString());
         flora.setExpresion_sexual(etExpSexual.getText().toString());
         flora.setPolinizacion(etPolinizacion.getText().toString());
         flora.setDispersion(etDispersion.getText().toString());
-        flora.setNumero_cromosomico(etNumCromosomatico.getText().toString());
+        flora.setNumero_cromosomatico(etNumCromosomatico.getText().toString());
         flora.setReproduccion_asexual(etRepAsexual.getText().toString());
         flora.setDistribucion(etDistribucion.getText().toString());
         flora.setBiologia(etBiologia.getText().toString());
@@ -292,14 +291,14 @@ public class EditFloraActivity extends AppCompatActivity {
         etAltitud.setText(flora.getAltitud());
         etHabitat.setText(flora.getHabitat());
         etFitosociologia.setText(flora.getFitosociologia());
-        etBiotipo.setText(flora.getBiotopo());
+        etBiotipo.setText(flora.getBiotipo());
         etBioReproductiva.setText(flora.getBiologia_reproductiva());
         etFloracion.setText(flora.getFloracion());
         etFructificacion.setText(flora.getFructificacion());
         etExpSexual.setText(flora.getExpresion_sexual());
         etPolinizacion.setText(flora.getPolinizacion());
         etDispersion.setText(flora.getDispersion());
-        etNumCromosomatico.setText(flora.getNumero_cromosomico());
+        etNumCromosomatico.setText(flora.getNumero_cromosomatico());
         etRepAsexual.setText(flora.getReproduccion_asexual());
         etDistribucion.setText(flora.getDistribucion());
         etBiologia.setText(flora.getBiologia());

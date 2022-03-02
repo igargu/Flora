@@ -77,7 +77,6 @@
     <string name="alertDialog_flora">Flora</string>
     <string name="alertDialog_imagen">Imagen</string>
     <string name="alertDialogMain_message">¿Qué datos desea ver?</string>
-    <string name="alertDialogMain_title">Información detallada</string>
     <string name="hintIdFlora">Id flora</string>
     <string name="toast_reload">Recargando...</string>
     <string name="toast_fieldsEmpty">No puede haber campos vacíos</string>

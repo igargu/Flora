@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton fabAdd, fabImagen, fabReload;
 
+    private String alertTitle = "Información detallada de X";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     private void defineFloraListener() {
         adapter.setOnClickListener(view -> {
             new MaterialAlertDialogBuilder(context)
-                    .setTitle(R.string.alertDialogMain_title)
+                    .setTitle(alertTitle.replace("X", adapter.getItem(recyclerView.getChildAdapterPosition(view)).getNombre()))
                     .setMessage(R.string.alertDialogMain_message)
                     .setNeutralButton(R.string.alertDialog_cancelar, (dialog, which) -> {
                         dialog.cancel();

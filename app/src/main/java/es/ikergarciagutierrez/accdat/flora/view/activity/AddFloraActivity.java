@@ -1,13 +1,11 @@
 package es.ikergarciagutierrez.accdat.flora.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -133,14 +131,14 @@ public class AddFloraActivity extends AppCompatActivity {
         flora.setAltitud(etAltitud.getText().toString());
         flora.setHabitat(etHabitat.getText().toString());
         flora.setFitosociologia(etFitosociologia.getText().toString());
-        flora.setBiotopo(etBiotipo.getText().toString());
+        flora.setBiotipo(etBiotipo.getText().toString());
         flora.setBiologia_reproductiva(etBioReproductiva.getText().toString());
         flora.setFloracion(etFloracion.getText().toString());
         flora.setFructificacion(etFructificacion.getText().toString());
         flora.setExpresion_sexual(etExpSexual.getText().toString());
         flora.setPolinizacion(etPolinizacion.getText().toString());
         flora.setDispersion(etDispersion.getText().toString());
-        flora.setNumero_cromosomico(etNumCromosomatico.getText().toString());
+        flora.setNumero_cromosomatico(etNumCromosomatico.getText().toString());
         flora.setReproduccion_asexual(etRepAsexual.getText().toString());
         flora.setDistribucion(etDistribucion.getText().toString());
         flora.setBiologia(etBiologia.getText().toString());
