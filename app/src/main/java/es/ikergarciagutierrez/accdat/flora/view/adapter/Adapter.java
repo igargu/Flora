@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -22,8 +23,14 @@ import es.ikergarciagutierrez.accdat.flora.view.adapter.viewholder.FloraViewHold
 import es.ikergarciagutierrez.accdat.flora.viewmodel.AddFloraViewModel;
 import es.ikergarciagutierrez.accdat.flora.viewmodel.MainActivityViewModel;
 
+/**
+ * Adapter para el RecyclerView
+ */
 public class Adapter extends RecyclerView.Adapter<FloraViewHolder> implements View.OnClickListener {
 
+    /**
+     * Campos de la clase
+     */
     private Context context;
 
     private List<Flora> floraList;
@@ -31,10 +38,22 @@ public class Adapter extends RecyclerView.Adapter<FloraViewHolder> implements Vi
 
     private View.OnClickListener listener;
 
+    /**
+     * Constructor para la clase
+     *
+     * @param context Contexto de la clase
+     */
     public Adapter(Context context) {
         this.context = context;
     }
 
+    /**
+     * Método que infla el layout con los componentes del item
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @NonNull
     @Override
     public FloraViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -45,6 +64,12 @@ public class Adapter extends RecyclerView.Adapter<FloraViewHolder> implements Vi
         return new FloraViewHolder(view);
     }
 
+    /**
+     * Método que llena los campos de cada item del RecyclerView
+     *
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull FloraViewHolder holder, int position) {
 
@@ -54,36 +79,55 @@ public class Adapter extends RecyclerView.Adapter<FloraViewHolder> implements Vi
         Picasso.get().load(ivFloraURL + flora.getId() + "/flora").into(holder.ivFlora);
     }
 
+    /**
+     * Método que devuelve la cantidad de items en el RecyclerView
+     *
+     * @return Cantidad de items en el RecyclerView
+     */
     @Override
     public int getItemCount() {
-        if(floraList == null) {
+        if (floraList == null) {
             return 0;
         }
         return floraList.size();
     }
 
+    /**
+     * Método que llena el ArrayList para el RecyclerView
+     *
+     * @param floraList ArrayList para el RecyclerView
+     */
     public void setFloraList(List<Flora> floraList) {
         this.floraList = floraList;
         notifyDataSetChanged();
     }
 
+    /**
+     * Método que devuelve un item del RecyclerView según su posición
+     *
+     * @param poisition Posición del item que vamos a devolver
+     * @return Item del RecyclerView que se encuentra en la posición que hemos especificado
+     */
+    public Flora getItem(int poisition) {
+        return floraList.get(poisition);
+    }
+
+    /**
+     * Método que estable el listenr para el RecyclerView
+     * @param listener Objeto Listener
+     */
     public void setOnClickListener(View.OnClickListener listener) {
         this.listener = listener;
     }
-    
+
+    /**
+     * Método que realiza la acción del listener
+     * @param view Objeto View
+     */
     public void onClick(View view) {
         if (listener != null) {
             listener.onClick(view);
         }
-    }
-
-    public void update(List<Flora> floras) {
-        floraList = floras;
-        notifyDataSetChanged();
-    }
-
-    public Flora getItem(int poisition) {
-        return floraList.get(poisition);
     }
 
 }

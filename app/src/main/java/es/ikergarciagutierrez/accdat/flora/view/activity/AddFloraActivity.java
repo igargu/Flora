@@ -10,12 +10,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import es.ikergarciagutierrez.accdat.flora.R;
 import es.ikergarciagutierrez.accdat.flora.model.entity.Flora;
 import es.ikergarciagutierrez.accdat.flora.viewmodel.AddFloraViewModel;
 
+/**
+ * Método que añade objetos Flora a la base de datos
+ */
 public class AddFloraActivity extends AppCompatActivity {
 
+    /**
+     * Campos de la clase
+     */
     private Context context;
     private Flora flora;
     private AddFloraViewModel afvm;
@@ -25,6 +33,13 @@ public class AddFloraActivity extends AppCompatActivity {
             etAmenazas, etMedPropuestas;
     private Button btCancelarAñadir, btAñadir;
 
+    private ArrayList<Flora> floras = new ArrayList<>();
+
+    /**
+     * Método que infla el layout
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +48,9 @@ public class AddFloraActivity extends AppCompatActivity {
         initialize();
     }
 
+    /**
+     * Método que inicializa los componentes del layout y los métodos de los listener
+     */
     private void initialize() {
         afvm = new ViewModelProvider(this).get(AddFloraViewModel.class);
         afvm.getAddFloraLiveData().observe(this, aLong -> {
@@ -67,10 +85,16 @@ public class AddFloraActivity extends AppCompatActivity {
         btCancelarAñadir = findViewById(R.id.btCancelarAñadir);
         btAñadir = findViewById(R.id.btAñadir);
 
+        floras = (ArrayList<Flora>) getIntent().getSerializableExtra("idFloras");
+
         defineButtonAñadirListener();
         defineButtonCancelarAñadirListener();
     }
 
+    /**
+     * Listener del button btAñadir. Añade un objeto Flora a la base de datos con los datos que
+     * hemos rellenado. Sólo se añade si no existe ya un objeto con el mismo nombre
+     */
     private void defineButtonAñadirListener() {
         btAñadir.setOnClickListener(v -> {
             new AlertDialog.Builder(context)
@@ -78,9 +102,20 @@ public class AddFloraActivity extends AppCompatActivity {
                     .setMessage(R.string.alertDialogAñadir_message)
                     .setPositiveButton(R.string.alertDialog_confirmar, (dialog, which) -> {
                         if (areFieldsEmpty()) {
-                            afvm.createFlora(getFlora());
-                            Toast.makeText(context, R.string.toast_añadirFlora, Toast.LENGTH_LONG).show();
-                            finish();
+                            boolean floraExist = false;
+                            for (int i = 0; i < floras.size(); i++) {
+                                if (!(getFlora().getNombre().equals(floras.get(i).getNombre())) && (i == floras.size() - 1)) {
+                                    afvm.createFlora(getFlora());
+                                    Toast.makeText(context, R.string.toast_añadirFlora, Toast.LENGTH_LONG).show();
+                                    finish();
+                                    floraExist = false;
+                                } else {
+                                    floraExist = true;
+                                }
+                            }
+                            if (floraExist) {
+                                Toast.makeText(context, R.string.toast_nameExist, Toast.LENGTH_SHORT).show();
+                            }
                         } else {
                             Toast.makeText(context, R.string.toast_fieldsEmpty, Toast.LENGTH_LONG).show();
                         }
@@ -92,6 +127,9 @@ public class AddFloraActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Listener del button btCancelar. Cancela la pantalla para añadir un nuevo objeto Flora
+     */
     private void defineButtonCancelarAñadirListener() {
         btCancelarAñadir.setOnClickListener(v -> {
             new AlertDialog.Builder(context)
@@ -107,6 +145,10 @@ public class AddFloraActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Método que comprueba si hay algún campo vacio
+     * @return true si hay algún campo vacio, false en caso contario
+     */
     private boolean areFieldsEmpty() {
         if (etNombre.getText().toString().isEmpty() || etFamilia.getText().toString().isEmpty() ||
                 etIdentificacion.getText().toString().isEmpty() || etAltitud.getText().toString().isEmpty() ||
@@ -123,6 +165,10 @@ public class AddFloraActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Método que devuelve un objeto Flora con los valores introducidos en los campos
+     * @return objeto Flora con los valores introducidos en los campos
+     */
     private Flora getFlora() {
         flora = new Flora();
         flora.setNombre(etNombre.getText().toString());

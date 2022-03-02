@@ -18,12 +18,20 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 import es.ikergarciagutierrez.accdat.flora.R;
 import es.ikergarciagutierrez.accdat.flora.model.entity.Flora;
 import es.ikergarciagutierrez.accdat.flora.viewmodel.EditFloraViewModel;
 
+/**
+ * Clase que edita y borra los objetos Flora
+ */
 public class EditFloraActivity extends AppCompatActivity {
 
+    /**
+     * Campos de la clase
+     */
     private Context context;
     private Flora flora;
     private EditFloraViewModel efvm;
@@ -41,6 +49,13 @@ public class EditFloraActivity extends AppCompatActivity {
     private String adBorrarTitulo = "¿Borrar X?";
     private String adEditarTitulo = "¿Editar X?";
 
+    private ArrayList<Flora> floras = new ArrayList<>();
+
+    /**
+     * Método que infla el layout
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +64,9 @@ public class EditFloraActivity extends AppCompatActivity {
         initialize();
     }
 
+    /**
+     * Método que inicializa los componentes del layout y los métodos de los listener
+     */
     private void initialize() {
 
         efvm = new ViewModelProvider(this).get(EditFloraViewModel.class);
@@ -85,6 +103,8 @@ public class EditFloraActivity extends AppCompatActivity {
         setFlora();
         deshabilitarEdicion();
 
+        floras = (ArrayList<Flora>) getIntent().getSerializableExtra("idFloras");
+
         defineTextViewMoreInfo();
         defineButtonBorrar();
         defineButtonEditar();
@@ -92,6 +112,10 @@ public class EditFloraActivity extends AppCompatActivity {
         defineButtonGuardarEdicion();
     }
 
+    /**
+     * Listener del textview tvMoreInfo. Hace una búsqueda en Wikipedia según el nombre del objeto
+     * Flora
+     */
     private void defineTextViewMoreInfo() {
         tvMoreInfo.setOnClickListener(view -> {
             if (etNombre.getText().toString().isEmpty()) {
@@ -105,13 +129,15 @@ public class EditFloraActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Listener del button btBorrar. Borra el objeto Flora de la base de datos
+     */
     private void defineButtonBorrar() {
         btBorrar.setOnClickListener(view -> {
             new AlertDialog.Builder(context)
                     .setTitle(adBorrarTitulo.replace("X", etNombre.getText()))
                     .setMessage(R.string.alertDialogBorrar_message)
                     .setPositiveButton(R.string.alertDialog_confirmar, (dialog, which) -> {
-                        // Borramos de la bd
                         efvm.deleteFlora(flora.getId());
                         Toast.makeText(context, R.string.toast_borrarFlora, Toast.LENGTH_LONG).show();
                         finish();
@@ -123,6 +149,9 @@ public class EditFloraActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Listener del button btEditar. Habilita la edición de campos
+     */
     private void defineButtonEditar() {
         btEditar.setOnClickListener(view -> {
             new AlertDialog.Builder(context)
@@ -138,6 +167,10 @@ public class EditFloraActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Listener del button btCancelarEdicion. Cancela la edición del objeto Flora, reestableciendo
+     * los datos a sus valores originales
+     */
     private void defineButtonCancelarEdicion() {
         btCancelarEdicion.setOnClickListener(view -> {
             new AlertDialog.Builder(context)
@@ -154,6 +187,10 @@ public class EditFloraActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Listener el button btGuardarEdicion. Guarda en la base de datos el objeto Flora con los
+     * nuevos valores introducidos
+     */
     private void defineButtonGuardarEdicion() {
         btGuardarEdicion.setOnClickListener(view -> {
             new AlertDialog.Builder(context)
@@ -161,10 +198,9 @@ public class EditFloraActivity extends AppCompatActivity {
                     .setMessage(R.string.alertDialogGuardarEdicion_message)
                     .setPositiveButton(R.string.alertDialog_confirmar, (dialog, which) -> {
                         deshabilitarEdicion();
-                        // Guardar cambios
                         if (!areFieldsEmpty()) {
                             efvm.editFlora(flora.getId(), getFlora());
-                            Toast.makeText(context, R.string.toast_editarFlora, Toast.LENGTH_LONG).show();
+                            finish();
                         } else {
                             Toast.makeText(context, R.string.toast_fieldsEmpty, Toast.LENGTH_LONG).show();
                         }
@@ -176,6 +212,10 @@ public class EditFloraActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Método que habilita la edición de campos y muestra los botones para cancelar y guardar la
+     * edición. Los botones de borrar y editar son ocultados
+     */
     private void habilitarEdicion() {
 
         btBorrar.setVisibility(View.GONE);
@@ -205,6 +245,10 @@ public class EditFloraActivity extends AppCompatActivity {
         etMedPropuestas.setEnabled(true);
     }
 
+    /**
+     * Método que deshabilita la edición de campos y muestra los botones borrar y editar.
+     * Los botones para cancelar y guardar la edición son ocultados
+     */
     private void deshabilitarEdicion() {
 
         btBorrar.setVisibility(View.VISIBLE);
@@ -236,6 +280,10 @@ public class EditFloraActivity extends AppCompatActivity {
         etMedPropuestas.setEnabled(false);
     }
 
+    /**
+     * Método que comprueba si hay algún campo vacio
+     * @return true si hay algún campo vacio, false en caso contario
+     */
     private boolean areFieldsEmpty() {
         if (etNombre.getText().toString().isEmpty() || etFamilia.getText().toString().isEmpty() ||
                 etIdentificacion.getText().toString().isEmpty() || etAltitud.getText().toString().isEmpty() ||
@@ -252,6 +300,10 @@ public class EditFloraActivity extends AppCompatActivity {
         return false;
     }
 
+    /**
+     * Método que devuelve un objeto Flora con los valores introducidos en los campos
+     * @return objeto Flora con los valores introducidos en los campos
+     */
     private Flora getFlora() {
 
         flora = new Flora();
@@ -280,6 +332,9 @@ public class EditFloraActivity extends AppCompatActivity {
         return flora;
     }
 
+    /**
+     * Método que llena los campos con los valores del objeto Flora actual
+     */
     private void setFlora() {
 
         Bundle bundle = getIntent().getExtras();

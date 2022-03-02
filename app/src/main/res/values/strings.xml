@@ -81,4 +81,5 @@
     <string name="toast_reload">Recargando...</string>
     <string name="toast_fieldsEmpty">No puede haber campos vacíos</string>
     <string name="toast_añadirImagen">Imagen añadida</string>
+    <string name="toast_nameExist">Ya existe una flora con este nombre</string>
 </resources>

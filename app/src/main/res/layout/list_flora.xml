@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:hint="@string/hintIdImagen"
+        android:background="@color/background_color"
         android:textColor="@color/black"
         android:textColorHint="@color/primary_dark_color"
         android:maxLines="1"

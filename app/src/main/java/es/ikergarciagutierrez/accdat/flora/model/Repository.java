@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -16,6 +17,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.ikergarciagutierrez.accdat.flora.R;
 import es.ikergarciagutierrez.accdat.flora.model.api.FloraClient;
 import es.ikergarciagutierrez.accdat.flora.model.entity.CreateResponse;
 import es.ikergarciagutierrez.accdat.flora.model.entity.Flora;
@@ -39,13 +41,11 @@ public class Repository {
     private static FloraClient floraClient;
 
     private MutableLiveData<ArrayList<Flora>> floraLiveData = new MutableLiveData<>();
-    private MutableLiveData<Flora> floraLiveDataId = new MutableLiveData<>();
 
     private MutableLiveData<Long> addFloraLiveData = new MutableLiveData<>();
     private MutableLiveData<Long> addImagenLiveData = new MutableLiveData<>();
 
     private MutableLiveData<Long> editFloraLiveData = new MutableLiveData<>();
-    private MutableLiveData<Long> editImagenLiveData = new MutableLiveData<>();
 
     private MutableLiveData<Long> deleteFloraLiveData = new MutableLiveData<>();
     private MutableLiveData<Long> deleteImagenLiveData = new MutableLiveData<>();
@@ -79,38 +79,29 @@ public class Repository {
         return retrofit.create(FloraClient.class);
     }
 
+    /**
+     * Obtener el array de floras
+     *
+     * @return floraLiveData
+     */
     public MutableLiveData<ArrayList<Flora>> getFloraLiveData() {
         return floraLiveData;
     }
 
-    public MutableLiveData<Flora> getFloraLiveDataId() {
-        return floraLiveDataId;
-    }
-
+    /**
+     * Obtener el array para añadir floras
+     *
+     * @return addFloraLiveData
+     */
     public MutableLiveData<Long> getAddFloraLiveData() {
         return addFloraLiveData;
     }
 
-    public MutableLiveData<Long> getAddImagenLiveData() {
-        return addImagenLiveData;
-    }
-
-    public MutableLiveData<Long> getEditFloraLiveData() {
-        return editFloraLiveData;
-    }
-
-    public MutableLiveData<Long> getEditImagenLiveData() {
-        return editImagenLiveData;
-    }
-
-    public MutableLiveData<Long> getDeleteFloraLiveData() {
-        return deleteFloraLiveData;
-    }
-
-    public MutableLiveData<Long> getDeleteImagenLiveData() {
-        return deleteImagenLiveData;
-    }
-
+    /**
+     * Borrar un flora según su id
+     *
+     * @param id de la flora que queremos borrar
+     */
     public void deleteFlora(long id) {
         Call<RowsResponse> call = floraClient.deleteFlora(id);
         call.enqueue(new Callback<RowsResponse>() {
@@ -122,23 +113,6 @@ public class Repository {
             @Override
             public void onFailure(Call<RowsResponse> call, Throwable t) {
 
-            }
-        });
-    }
-
-
-    public void getFlora(long id) {
-        Call<Flora> call = floraClient.getFlora(id);
-        call.enqueue(new Callback<Flora>() {
-            @Override
-            public void onResponse(Call<Flora> call, Response<Flora> response) {
-                floraLiveDataId.setValue(response.body());
-                Log.v("xyzyx", response.body().toString());
-            }
-
-            @Override
-            public void onFailure(Call<Flora> call, Throwable t) {
-                Log.v("xyzyx", t.getLocalizedMessage());
             }
         });
     }
@@ -162,6 +136,11 @@ public class Repository {
         });
     }
 
+    /**
+     * Crear un objeto flora
+     *
+     * @param flora Objeto flora que queremos crear
+     */
     public void createFlora(Flora flora) {
         Call<CreateResponse> call = floraClient.createFlora(flora);
         call.enqueue(new Callback<CreateResponse>() {
@@ -177,12 +156,23 @@ public class Repository {
         });
     }
 
+    /**
+     * Editar un objeto flora con otro según su id
+     *
+     * @param id    id del objeto flora que queremos editar
+     * @param flora objeto flora por el queremos sustituir el existente
+     */
     public void editFlora(long id, Flora flora) {
         Call<RowsResponse> call = floraClient.editFlora(id, flora);
         call.enqueue(new Callback<RowsResponse>() {
             @Override
             public void onResponse(Call<RowsResponse> call, Response<RowsResponse> response) {
-                editFloraLiveData.setValue(response.body().rows);
+                try {
+                    editFloraLiveData.setValue(response.body().rows);
+                    Toast.makeText(context, R.string.toast_editarFlora, Toast.LENGTH_LONG).show();
+                } catch (NullPointerException e) {
+                    Toast.makeText(context, R.string.toast_nameExist, Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
@@ -192,6 +182,12 @@ public class Repository {
         });
     }
 
+    /**
+     * Guardar un imagen en la bd
+     *
+     * @param intent
+     * @param imagen
+     */
     public void saveImagen(Intent intent, Imagen imagen) {
         String nombre = "xyzyx.abc";
         copyData(intent, nombre);
@@ -199,6 +195,12 @@ public class Repository {
         subirImagen(file, imagen);
     }
 
+    /**
+     * Subir imagen a la bd
+     *
+     * @param file
+     * @param imagen
+     */
     private void subirImagen(File file, Imagen imagen) {
         RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("photo", imagen.nombre, requestFile);

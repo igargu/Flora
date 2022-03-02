@@ -17,12 +17,26 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import es.ikergarciagutierrez.accdat.flora.R;
+import es.ikergarciagutierrez.accdat.flora.model.entity.Flora;
 import es.ikergarciagutierrez.accdat.flora.model.entity.Imagen;
 import es.ikergarciagutierrez.accdat.flora.viewmodel.AddImagenViewModel;
+import es.ikergarciagutierrez.accdat.flora.viewmodel.MainActivityViewModel;
 
+/**
+ * Clase que añade una imagen al objeto Flora que decidamos guardando en la base de datos como un
+ * objeto Imagen
+ */
 public class AddImagenActivity extends AppCompatActivity {
 
+    /**
+     * Campos de la clase
+     */
     private ActivityResultLauncher<Intent> launcher;
     private AddImagenViewModel aivm;
 
@@ -33,7 +47,14 @@ public class AddImagenActivity extends AppCompatActivity {
 
     private Intent resultadoImagen = null;
 
+    private ArrayList<Flora> floras = new ArrayList<>();
+    private ArrayAdapter<String> adapter;
 
+    /**
+     * Método que infla el layout
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +62,9 @@ public class AddImagenActivity extends AppCompatActivity {
         initialize();
     }
 
+    /**
+     * Método que inicializa los componentes del layout y los métodos de los listener
+     */
     private void initialize() {
 
         launcher = getLauncher();
@@ -60,15 +84,34 @@ public class AddImagenActivity extends AppCompatActivity {
             uploadDataImage();
         });
 
-        String[] type = new String[]{"2", "3", "4", "8", "9", "10", "11"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.list_flora, R.id.tvIdFlora, type);
+        floras = (ArrayList<Flora>) getIntent().getSerializableExtra("idFloras");
+
+        String[] type = new String[floras.size()];
+        for (int i = 0; i < floras.size(); i++) {
+            type[i] = floras.get(i).getNombre();
+        }
+
+        adapter = new ArrayAdapter<>(this, R.layout.list_flora, R.id.tvIdFlora, type);
         actvIdFlora.setAdapter(adapter);
 
     }
 
+    /**
+     * Método que guarda en la base de datos el objeto Imagen con los datos que hemos rellanado y la
+     * foto que hemos seleccionado de nuestro dispositivo
+     */
     private void uploadDataImage() {
-        String idFlora = actvIdFlora.getText().toString();
-        String nombre = etNombreImagen.getText().toString();
+
+        long id = 0;
+        String nombre = "";
+        for (int i = 0; i < floras.size(); i++) {
+            if (actvIdFlora.getText().toString().equals(floras.get(i).getNombre())) {
+                id = floras.get(i).getId();
+            }
+        }
+
+        String idFlora = String.valueOf(id);
+        nombre = etNombreImagen.getText().toString();
         String descripcion = etDescripcionImagen.getText().toString();
 
         if (!(nombre.trim().isEmpty() || idFlora.trim().isEmpty() || resultadoImagen == null)) {
@@ -84,19 +127,28 @@ public class AddImagenActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Método que devuelve el resultado de seleccionar una imagen de nuestro dispositivo
+     *
+     * @return Resultado de seleccionar una imagen de nuestro dispositivo
+     */
     ActivityResultLauncher<Intent> getLauncher() {
         return registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
                     //respuesta al resultado de haber seleccionado una imagen
-                    if(result.getResultCode() == Activity.RESULT_OK) {
-                        //copyData(result.getData());
+                    if (result.getResultCode() == Activity.RESULT_OK) {
                         resultadoImagen = result.getData();
                     }
                 }
         );
     }
 
+    /**
+     * Método que devuelve un objeto intent que abre el explorador de archivos de nuestro dispositivo
+     *
+     * @return intent que abre el explorador de archivos de nuestro dispositivo
+     */
     Intent getContentIntent() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -104,6 +156,9 @@ public class AddImagenActivity extends AppCompatActivity {
         return intent;
     }
 
+    /**
+     * Método que selecciona la imagen que hemos obtenido de nuestro dispositivo
+     */
     void selectImage() {
         Intent intent = getContentIntent();
         launcher.launch(intent);
