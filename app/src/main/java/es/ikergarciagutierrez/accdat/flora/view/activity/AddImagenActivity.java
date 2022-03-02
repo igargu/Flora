@@ -60,7 +60,7 @@ public class AddImagenActivity extends AppCompatActivity {
             uploadDataImage();
         });
 
-        String[] type = new String[]{"1"};
+        String[] type = new String[]{"2", "3", "4", "8", "9", "10", "11"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.list_flora, R.id.tvIdFlora, type);
         actvIdFlora.setAdapter(adapter);
 
