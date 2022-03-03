@@ -79,7 +79,8 @@
     <string name="alertDialogMain_message">¿Qué datos desea ver?</string>
     <string name="hintIdFlora">Id flora</string>
     <string name="toast_reload">Recargando...</string>
-    <string name="toast_fieldsEmpty">No puede haber campos vacíos</string>
+    <string name="toast_fieldsEmpty">El campo nombre no puede estar vacío</string>
     <string name="toast_añadirImagen">Imagen añadida</string>
     <string name="toast_nameExist">Ya existe una flora con este nombre</string>
+    <string name="toast_fieldsEmptyAddImage">El campo nombre y la ID no pueden estar vacíos</string>
 </resources>

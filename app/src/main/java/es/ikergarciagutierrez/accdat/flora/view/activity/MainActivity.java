@@ -111,11 +111,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void defineFABReloadListener() {
         fabReload.setOnClickListener(view -> {
-            Intent i = new Intent(MainActivity.this, MainActivity.class);
-            finish();
-            overridePendingTransition(0, 0);
-            startActivity(i);
-            overridePendingTransition(0, 0);
+            mavm.getFlora();
             Toast.makeText(context, R.string.toast_reload, Toast.LENGTH_SHORT).show();
         });
     }

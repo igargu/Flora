@@ -19,8 +19,11 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 
 import es.ikergarciagutierrez.accdat.flora.R;
 import es.ikergarciagutierrez.accdat.flora.model.entity.Flora;
@@ -110,8 +113,9 @@ public class AddImagenActivity extends AppCompatActivity {
             }
         }
 
+        Random seed = new Random(30);
         String idFlora = String.valueOf(id);
-        nombre = etNombreImagen.getText().toString();
+        nombre = etNombreImagen.getText().toString() + "_" + seed.nextInt();
         String descripcion = etDescripcionImagen.getText().toString();
 
         if (!(nombre.trim().isEmpty() || idFlora.trim().isEmpty() || resultadoImagen == null)) {
@@ -123,7 +127,7 @@ public class AddImagenActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.toast_añadirImagen, Toast.LENGTH_LONG).show();
             finish();
         } else {
-            Toast.makeText(this, R.string.toast_fieldsEmpty, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.toast_fieldsEmptyAddImage, Toast.LENGTH_LONG).show();
         }
     }
 

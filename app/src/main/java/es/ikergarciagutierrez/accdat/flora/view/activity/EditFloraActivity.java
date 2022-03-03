@@ -281,20 +281,11 @@ public class EditFloraActivity extends AppCompatActivity {
     }
 
     /**
-     * Método que comprueba si hay algún campo vacio
-     * @return true si hay algún campo vacio, false en caso contario
+     * Método que comprueba si el campo nombre está vacío
+     * @return true si el campo nombre está vacío, false en caso contario
      */
     private boolean areFieldsEmpty() {
-        if (etNombre.getText().toString().isEmpty() || etFamilia.getText().toString().isEmpty() ||
-                etIdentificacion.getText().toString().isEmpty() || etAltitud.getText().toString().isEmpty() ||
-                etHabitat.getText().toString().isEmpty() || etFitosociologia.getText().toString().isEmpty() ||
-                etBiotipo.getText().toString().isEmpty() || etBioReproductiva.getText().toString().isEmpty() ||
-                etFloracion.getText().toString().isEmpty() || etFructificacion.getText().toString().isEmpty() ||
-                etExpSexual.getText().toString().isEmpty() || etPolinizacion.getText().toString().isEmpty() ||
-                etDispersion.getText().toString().isEmpty() || etNumCromosomatico.getText().toString().isEmpty() ||
-                etRepAsexual.getText().toString().isEmpty() || etDistribucion.getText().toString().isEmpty() ||
-                etBiologia.getText().toString().isEmpty() || etDemografia.getText().toString().isEmpty() ||
-                etAmenazas.getText().toString().isEmpty() || etMedPropuestas.getText().toString().isEmpty()) {
+        if (etNombre.getText().toString().isEmpty()) {
             return true;
         }
         return false;

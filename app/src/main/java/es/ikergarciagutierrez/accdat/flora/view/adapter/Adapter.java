@@ -12,6 +12,8 @@ import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -72,11 +74,11 @@ public class Adapter extends RecyclerView.Adapter<FloraViewHolder> implements Vi
      */
     @Override
     public void onBindViewHolder(@NonNull FloraViewHolder holder, int position) {
-
         Flora flora = floraList.get(position);
         holder.etFloraNombre.setText(flora.getNombre());
         holder.etFloraFamilia.setText(flora.getFamilia());
-        Picasso.get().load(ivFloraURL + flora.getId() + "/flora").into(holder.ivFlora);
+        Picasso.get().load(ivFloraURL + flora.getId() + "/flora")
+                .memoryPolicy(MemoryPolicy.NO_CACHE).networkPolicy(NetworkPolicy.NO_CACHE).into(holder.ivFlora);
     }
 
     /**
