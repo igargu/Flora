@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private MainActivityViewModel mavm;
     private Adapter adapter;
 
-    private FloatingActionButton fabAdd, fabImagen, fabReload;
+    private FloatingActionButton fabAdd, fabImagen;
 
     /**
      * Método que infla el layout
@@ -54,6 +54,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = this;
+        initialize();
+    }
+
+    protected void onResume() {
+        super.onResume();
+        mavm.getFlora();
         initialize();
     }
 
@@ -69,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
 
         fabAdd = findViewById(R.id.fabAdd);
         fabImagen = findViewById(R.id.fabImagen);
-        fabReload = findViewById(R.id.fabReload);
 
         mavm = new ViewModelProvider(this).get(MainActivityViewModel.class);
         mavm.getFlora();
@@ -79,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
 
         defineFABAddListener();
         defineFABImagenListener();
-        defineFABReloadListener();
         defineFloraListener();
     }
 
@@ -104,16 +108,6 @@ public class MainActivity extends AppCompatActivity {
      */
     private void defineFABImagenListener() {
         fabImagen.setOnClickListener(v -> openAddImagenActivity());
-    }
-
-    /**
-     * Listener del fab FABReload. Recarga la activity principal para actualizar los datos
-     */
-    private void defineFABReloadListener() {
-        fabReload.setOnClickListener(view -> {
-            mavm.getFlora();
-            Toast.makeText(context, R.string.toast_reload, Toast.LENGTH_SHORT).show();
-        });
     }
 
     /**
