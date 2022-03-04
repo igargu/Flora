@@ -1,13 +1,18 @@
 package es.ikergarciagutierrez.accdat.flora.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -44,6 +49,7 @@ public class AddFloraActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_flora);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         context = this;
         initialize();
     }
@@ -55,9 +61,10 @@ public class AddFloraActivity extends AppCompatActivity {
         afvm = new ViewModelProvider(this).get(AddFloraViewModel.class);
         afvm.getAddFloraLiveData().observe(this, aLong -> {
             if (aLong > 0) {
+                showToast(R.string.toast_añadirFlora);
                 finish();
             } else {
-                Toast.makeText(AddFloraActivity.this, R.string.toast_error, Toast.LENGTH_LONG).show();
+                showToast(R.string.toast_nameExist);
             }
         });
 
@@ -102,22 +109,9 @@ public class AddFloraActivity extends AppCompatActivity {
                     .setMessage(R.string.alertDialogAñadir_message)
                     .setPositiveButton(R.string.alertDialog_confirmar, (dialog, which) -> {
                         if (areFieldsEmpty()) {
-                            boolean floraExist = false;
-                            for (int i = 0; i < floras.size(); i++) {
-                                if (!(getFlora().getNombre().equals(floras.get(i).getNombre())) && (i == floras.size() - 1)) {
-                                    afvm.createFlora(getFlora());
-                                    Toast.makeText(context, R.string.toast_añadirFlora, Toast.LENGTH_LONG).show();
-                                    finish();
-                                    floraExist = false;
-                                } else {
-                                    floraExist = true;
-                                }
-                            }
-                            if (floraExist) {
-                                Toast.makeText(context, R.string.toast_nameExist, Toast.LENGTH_SHORT).show();
-                            }
+                            afvm.createFlora(getFlora());
                         } else {
-                            Toast.makeText(context, R.string.toast_fieldsEmpty, Toast.LENGTH_LONG).show();
+                            showToast(R.string.toast_fieldsEmpty);
                         }
                     })
                     .setNegativeButton(R.string.alertDialog_cancelar, (dialog, which) -> {
@@ -147,6 +141,7 @@ public class AddFloraActivity extends AppCompatActivity {
 
     /**
      * Método que comprueba si el campo nombre está vacío
+     *
      * @return true si el campo nombre está vacío, false en caso contario
      */
     private boolean areFieldsEmpty() {
@@ -158,6 +153,7 @@ public class AddFloraActivity extends AppCompatActivity {
 
     /**
      * Método que devuelve un objeto Flora con los valores introducidos en los campos
+     *
      * @return objeto Flora con los valores introducidos en los campos
      */
     private Flora getFlora() {
@@ -183,5 +179,19 @@ public class AddFloraActivity extends AppCompatActivity {
         flora.setAmenazas(etAmenazas.getText().toString());
         flora.setMedidas_propuestas(etMedPropuestas.getText().toString());
         return flora;
+    }
+
+    /**
+     * Método que muestra un Toast personalizado
+     *
+     * @param message Mensaje que queremos que aparezca en el Toast
+     */
+    private void showToast(int message) {
+        Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
+        View toastView = toast.getView();
+        toastView.getBackground().setColorFilter(getResources().getColor(R.color.primary_dark_color), PorterDuff.Mode.SRC_IN);
+        TextView tv = (TextView) toast.getView().findViewById(android.R.id.message);
+        tv.setTextColor(Color.WHITE);
+        toast.show();
     }
 }

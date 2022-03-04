@@ -2,20 +2,22 @@ package es.ikergarciagutierrez.accdat.flora.model;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 import es.ikergarciagutierrez.accdat.flora.R;
 import es.ikergarciagutierrez.accdat.flora.model.api.FloraClient;
@@ -44,11 +46,8 @@ public class Repository {
 
     private MutableLiveData<Long> addFloraLiveData = new MutableLiveData<>();
     private MutableLiveData<Long> addImagenLiveData = new MutableLiveData<>();
-
     private MutableLiveData<Long> editFloraLiveData = new MutableLiveData<>();
-
     private MutableLiveData<Long> deleteFloraLiveData = new MutableLiveData<>();
-    private MutableLiveData<Long> deleteImagenLiveData = new MutableLiveData<>();
 
     /**
      * Inicialización de las variables estáticas
@@ -169,9 +168,9 @@ public class Repository {
             public void onResponse(Call<RowsResponse> call, Response<RowsResponse> response) {
                 try {
                     editFloraLiveData.setValue(response.body().rows);
-                    Toast.makeText(context, R.string.toast_editarFlora, Toast.LENGTH_LONG).show();
+                    showToast(R.string.toast_editarFlora);
                 } catch (NullPointerException e) {
-                    Toast.makeText(context, R.string.toast_nameExist, Toast.LENGTH_LONG).show();
+                    showToast(R.string.toast_nameExist);
                 }
             }
 
@@ -238,6 +237,20 @@ public class Repository {
             Log.v("xyzyx", e.toString());
         }
         return result;
+    }
+
+    /**
+     * Método que muestra un Toast personalizado
+     *
+     * @param message Mensaje que queremos que aparezca en el Toast
+     */
+    private void showToast(int message) {
+        Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
+        View toastView = toast.getView();
+        toastView.getBackground().setColorFilter(context.getResources().getColor(R.color.primary_dark_color), PorterDuff.Mode.SRC_IN);
+        TextView tv = (TextView) toast.getView().findViewById(android.R.id.message);
+        tv.setTextColor(Color.WHITE);
+        toast.show();
     }
 
 }

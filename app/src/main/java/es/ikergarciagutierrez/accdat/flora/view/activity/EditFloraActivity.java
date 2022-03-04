@@ -1,11 +1,14 @@
 package es.ikergarciagutierrez.accdat.flora.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -60,6 +63,7 @@ public class EditFloraActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_flora);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         context = this;
         initialize();
     }
@@ -139,7 +143,7 @@ public class EditFloraActivity extends AppCompatActivity {
                     .setMessage(R.string.alertDialogBorrar_message)
                     .setPositiveButton(R.string.alertDialog_confirmar, (dialog, which) -> {
                         efvm.deleteFlora(flora.getId());
-                        Toast.makeText(context, R.string.toast_borrarFlora, Toast.LENGTH_LONG).show();
+                        showToast(R.string.toast_borrarFlora);
                         finish();
                     })
                     .setNegativeButton(R.string.alertDialog_cancelar, (dialog, which) -> {
@@ -202,7 +206,7 @@ public class EditFloraActivity extends AppCompatActivity {
                             efvm.editFlora(flora.getId(), getFlora());
                             finish();
                         } else {
-                            Toast.makeText(context, R.string.toast_fieldsEmpty, Toast.LENGTH_LONG).show();
+                            showToast(R.string.toast_fieldsEmpty);
                         }
                     })
                     .setNegativeButton(R.string.alertDialog_cancelar, (dialog, which) -> {
@@ -255,8 +259,6 @@ public class EditFloraActivity extends AppCompatActivity {
         btEditar.setVisibility(View.VISIBLE);
         btCancelarEdicion.setVisibility(View.GONE);
         btGuardarEdicion.setVisibility(View.GONE);
-
-        Picasso.get().load(ivFloraURL + flora.getId() + "/flora").into(ivFlora);
 
         etNombre.setEnabled(false);
         etFamilia.setEnabled(false);
@@ -331,6 +333,8 @@ public class EditFloraActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         flora = bundle.getParcelable("idFlora");
 
+        Picasso.get().load(ivFloraURL + flora.getId() + "/flora").into(ivFlora);
+
         etNombre.setText(flora.getNombre());
         etFamilia.setText(flora.getFamilia());
         etIdentificacion.setText(flora.getIdentificacion());
@@ -351,6 +355,20 @@ public class EditFloraActivity extends AppCompatActivity {
         etDemografia.setText(flora.getDemografia());
         etAmenazas.setText(flora.getAmenazas());
         etMedPropuestas.setText(flora.getMedidas_propuestas());
+    }
+
+    /**
+     * Método que muestra un Toast personalizado
+     *
+     * @param message Mensaje que queremos que aparezca en el Toast
+     */
+    private void showToast(int message) {
+        Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
+        View toastView = toast.getView();
+        toastView.getBackground().setColorFilter(getResources().getColor(R.color.primary_dark_color), PorterDuff.Mode.SRC_IN);
+        TextView tv = (TextView) toast.getView().findViewById(android.R.id.message);
+        tv.setTextColor(Color.WHITE);
+        toast.show();
     }
 
 }

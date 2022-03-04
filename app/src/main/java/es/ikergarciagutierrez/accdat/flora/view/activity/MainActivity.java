@@ -1,7 +1,7 @@
 package es.ikergarciagutierrez.accdat.flora.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,22 +9,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 import es.ikergarciagutierrez.accdat.flora.R;
-import es.ikergarciagutierrez.accdat.flora.model.api.FloraClient;
 import es.ikergarciagutierrez.accdat.flora.model.entity.Flora;
-import es.ikergarciagutierrez.accdat.flora.model.entity.Imagen;
-import es.ikergarciagutierrez.accdat.flora.view.activity.AddFloraActivity;
 import es.ikergarciagutierrez.accdat.flora.view.adapter.Adapter;
 import es.ikergarciagutierrez.accdat.flora.viewmodel.MainActivityViewModel;
 
@@ -53,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         context = this;
         initialize();
     }
@@ -157,4 +149,5 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(intent);
     }
+
 }

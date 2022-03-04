@@ -3,26 +3,31 @@ package es.ikergarciagutierrez.accdat.flora.view.activity;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
 import java.util.Random;
 
 import es.ikergarciagutierrez.accdat.flora.R;
@@ -40,18 +45,22 @@ public class AddImagenActivity extends AppCompatActivity {
     /**
      * Campos de la clase
      */
+    private Context context;
+
     private ActivityResultLauncher<Intent> launcher;
     private AddImagenViewModel aivm;
 
     private ImageView ivSelectImagen;
     private AutoCompleteTextView actvIdFlora;
     private EditText etNombreImagen, etDescripcionImagen;
-    private Button btAddImagen;
+    private Button btAddImagen, btCancelarAdd;
 
     private Intent resultadoImagen = null;
 
     private ArrayList<Flora> floras = new ArrayList<>();
     private ArrayAdapter<String> adapter;
+
+    private String adAñadirImagen = "¿Añadir esta imagen a X?";
 
     /**
      * Método que infla el layout
@@ -62,6 +71,8 @@ public class AddImagenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_imagen);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        context = this;
         initialize();
     }
 
@@ -78,13 +89,27 @@ public class AddImagenActivity extends AppCompatActivity {
         etNombreImagen = findViewById(R.id.etNombreImagen);
         etDescripcionImagen = findViewById(R.id.etDescripcionImagen);
         btAddImagen = findViewById(R.id.btAñadir);
+        btCancelarAdd = findViewById(R.id.btCancelarAñadir);
 
         ivSelectImagen.setOnClickListener(v -> {
             selectImage();
         });
 
         btAddImagen.setOnClickListener(v -> {
-            uploadDataImage();
+            new AlertDialog.Builder(context)
+                    .setTitle(adAñadirImagen.replace("X", etNombreImagen.getText()))
+                    .setMessage(R.string.alertDialogAñadirImagen_message)
+                    .setPositiveButton(R.string.alertDialog_confirmar, (dialog, which) -> {
+                        uploadDataImage();
+                    })
+                    .setNegativeButton(R.string.alertDialog_cancelar, (dialog, which) -> {
+                        dialog.cancel();
+                    })
+                    .show();
+        });
+
+        btCancelarAdd.setOnClickListener(v -> {
+            cancelAddImagen();
         });
 
         floras = (ArrayList<Flora>) getIntent().getSerializableExtra("idFloras");
@@ -124,10 +149,11 @@ public class AddImagenActivity extends AppCompatActivity {
             imagen.descripcion = descripcion;
             imagen.idflora = Long.parseLong(idFlora);
             aivm.saveImagen(resultadoImagen, imagen);
-            Toast.makeText(this, R.string.toast_añadirImagen, Toast.LENGTH_LONG).show();
+            showToast(R.string.toast_añadirImagen);
+            Log.v("xyzyx", imagen.toString());
             finish();
         } else {
-            Toast.makeText(this, R.string.toast_fieldsEmptyAddImage, Toast.LENGTH_LONG).show();
+            showToast(R.string.toast_fieldsEmptyAddImage);
         }
     }
 
@@ -143,6 +169,7 @@ public class AddImagenActivity extends AppCompatActivity {
                     //respuesta al resultado de haber seleccionado una imagen
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         resultadoImagen = result.getData();
+                        Picasso.get().load(resultadoImagen.getData()).memoryPolicy(MemoryPolicy.NO_CACHE).networkPolicy(NetworkPolicy.NO_CACHE).into(ivSelectImagen);
                     }
                 }
         );
@@ -166,5 +193,35 @@ public class AddImagenActivity extends AppCompatActivity {
     void selectImage() {
         Intent intent = getContentIntent();
         launcher.launch(intent);
+    }
+
+    /**
+     * Método que cancela la activity
+     */
+    private void cancelAddImagen() {
+        new AlertDialog.Builder(context)
+                .setTitle(R.string.alertDialogCancelarAñadirImagen_title)
+                .setMessage(R.string.alertDialogCancelarAñadir_message)
+                .setPositiveButton(R.string.alertDialog_confirmar, (dialog, which) -> {
+                    finish();
+                })
+                .setNegativeButton(R.string.alertDialog_cancelar, (dialog, which) -> {
+                    dialog.cancel();
+                })
+                .show();
+    }
+
+    /**
+     * Método que muestra un Toast personalizado
+     *
+     * @param message Mensaje que queremos que aparezca en el Toast
+     */
+    private void showToast(int message) {
+        Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
+        View toastView = toast.getView();
+        toastView.getBackground().setColorFilter(getResources().getColor(R.color.primary_dark_color), PorterDuff.Mode.SRC_IN);
+        TextView tv = (TextView) toast.getView().findViewById(android.R.id.message);
+        tv.setTextColor(Color.WHITE);
+        toast.show();
     }
 }
