@@ -11,12 +11,11 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:hint="@string/hintIdImagen"
-        android:background="@color/background_color"
-        android:textColor="@color/black"
-        android:textColorHint="@color/primary_dark_color"
         android:maxLines="1"
         android:padding="16dp"
         android:textAppearance="?attr/textAppearanceSubtitle1"
+        android:textColor="@color/black"
+        android:textColorHint="@color/primary_dark_color"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

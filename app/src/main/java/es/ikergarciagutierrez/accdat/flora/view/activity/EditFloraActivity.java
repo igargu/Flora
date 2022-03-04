@@ -39,6 +39,7 @@ public class EditFloraActivity extends AppCompatActivity {
     private Flora flora;
     private EditFloraViewModel efvm;
 
+    private TextView tvImagen;
     private ImageView ivFlora;
     private EditText etNombre, etFamilia, etIdentificacion, etAltitud, etHabitat, etFitosociologia,
             etBiotipo, etBioReproductiva, etFloracion, etFructificacion, etExpSexual, etPolinizacion,
@@ -75,6 +76,7 @@ public class EditFloraActivity extends AppCompatActivity {
 
         efvm = new ViewModelProvider(this).get(EditFloraViewModel.class);
 
+        tvImagen = findViewById(R.id.tvImagen);
         ivFlora = findViewById(R.id.ivFlora);
         etNombre = findViewById(R.id.etFloraNombre);
         etFamilia = findViewById(R.id.etFloraFamilia);
@@ -114,6 +116,13 @@ public class EditFloraActivity extends AppCompatActivity {
         defineButtonEditar();
         defineButtonCancelarEdicion();
         defineButtonGuardarEdicion();
+    }
+
+    private void defineTextViewImagen() {
+        tvImagen.setOnClickListener(v -> {
+            Intent intent = new Intent(this, AddImagenActivity.class);
+            startActivity(intent);
+        });
     }
 
     /**
@@ -222,6 +231,10 @@ public class EditFloraActivity extends AppCompatActivity {
      */
     private void habilitarEdicion() {
 
+        tvImagen.setVisibility(View.VISIBLE);
+
+        ivFlora.setVisibility(View.GONE);
+
         btBorrar.setVisibility(View.GONE);
         btEditar.setVisibility(View.GONE);
         btCancelarEdicion.setVisibility(View.VISIBLE);
@@ -254,6 +267,10 @@ public class EditFloraActivity extends AppCompatActivity {
      * Los botones para cancelar y guardar la edición son ocultados
      */
     private void deshabilitarEdicion() {
+
+        tvImagen.setVisibility(View.GONE);
+
+        ivFlora.setVisibility(View.VISIBLE);
 
         btBorrar.setVisibility(View.VISIBLE);
         btEditar.setVisibility(View.VISIBLE);

@@ -5,7 +5,6 @@ public class RowsResponse {
     public long rows;
 
     public RowsResponse() {
-
     }
 
     @Override

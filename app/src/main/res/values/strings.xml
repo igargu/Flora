@@ -85,4 +85,5 @@
     <string name="toast_fieldsEmptyAddImage">El campo nombre y la ID no pueden estar vacíos</string>
     <string name="alertDialogCancelarAñadirImagen_title">¿Desea no añadir esta imagen?</string>
     <string name="alertDialogAñadirImagen_message">Será sustituida por la imagen actual</string>
+    <string name="tvImagen">Pulse la imagen para editarla</string>
 </resources>
