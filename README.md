@@ -5,7 +5,8 @@ Todos los datos que añadamos pueden ser editados o borrados en cualquier moment
 
 ## Layout principal
 
-<img src="https://user-images.githubusercontent.com/81225623/156653838-6dfd8633-16c1-449c-a086-9dbd8831faea.jpg" width="300" height="550">
+<img src="https://user-images.githubusercontent.com/81225623/156929037-815b8e87-527d-466b-aa85-86d6f1f915f0.jpg" width="300" height="550">
+
 
 ## Layout para añadir datos
 
@@ -13,8 +14,8 @@ Todos los datos que añadamos pueden ser editados o borrados en cualquier moment
 
 ## Layout para añadir imágenes
 
-<img src="https://user-images.githubusercontent.com/81225623/156465931-3ffc916b-20b5-49bb-a555-8ce8f69c26ba.jpg" width="300" height="550">
+<img src="https://user-images.githubusercontent.com/81225623/156929129-6f8caa2a-3fb6-42a9-bb22-222571ea6232.jpg" width="300" height="550">
 
 ## Layout para editar y borrar datos
 
-<img src="https://user-images.githubusercontent.com/81225623/156465998-fab9463e-d9d2-42c1-963d-2a6b5e8d9968.jpg" width="300" height="550">
+<img src="https://user-images.githubusercontent.com/81225623/156929057-7b36cfdc-3b6a-4a80-8504-bd074f85fbfa.jpg" width="300" height="550">
