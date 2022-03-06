@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color"
-    tools:context=".view.activity.AddImagenActivity">
+    tools:context=".view.activity.EditImagenActivity">
 
     <TextView
         android:id="@+id/tvUploadImagenTitle"
@@ -35,7 +35,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilIdFlora"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -54,8 +54,8 @@
         app:layout_constraintTop_toBottomOf="@+id/ivSelectImagen"
         tools:ignore="TextContrastCheck">
 
-        <AutoCompleteTextView
-            android:id="@+id/actvIdFlora"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etIdFlora"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hintIdFlora"

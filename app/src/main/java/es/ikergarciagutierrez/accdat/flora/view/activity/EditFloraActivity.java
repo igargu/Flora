@@ -19,9 +19,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
 
 import es.ikergarciagutierrez.accdat.flora.R;
 import es.ikergarciagutierrez.accdat.flora.model.entity.Flora;
@@ -39,7 +39,6 @@ public class EditFloraActivity extends AppCompatActivity {
     private Flora flora;
     private EditFloraViewModel efvm;
 
-    private TextView tvImagen;
     private ImageView ivFlora;
     private EditText etNombre, etFamilia, etIdentificacion, etAltitud, etHabitat, etFitosociologia,
             etBiotipo, etBioReproductiva, etFloracion, etFructificacion, etExpSexual, etPolinizacion,
@@ -52,8 +51,6 @@ public class EditFloraActivity extends AppCompatActivity {
 
     private String adBorrarTitulo = "¿Borrar X?";
     private String adEditarTitulo = "¿Editar X?";
-
-    private ArrayList<Flora> floras = new ArrayList<>();
 
     /**
      * Método que infla el layout
@@ -69,6 +66,11 @@ public class EditFloraActivity extends AppCompatActivity {
         initialize();
     }
 
+    protected void onResume() {
+        super.onResume();
+        initialize();
+    }
+
     /**
      * Método que inicializa los componentes del layout y los métodos de los listener
      */
@@ -76,7 +78,6 @@ public class EditFloraActivity extends AppCompatActivity {
 
         efvm = new ViewModelProvider(this).get(EditFloraViewModel.class);
 
-        tvImagen = findViewById(R.id.tvImagen);
         ivFlora = findViewById(R.id.ivFlora);
         etNombre = findViewById(R.id.etFloraNombre);
         etFamilia = findViewById(R.id.etFloraFamilia);
@@ -109,27 +110,18 @@ public class EditFloraActivity extends AppCompatActivity {
         setFlora();
         deshabilitarEdicion();
 
-        floras = (ArrayList<Flora>) getIntent().getSerializableExtra("idFloras");
-
-        defineTextViewMoreInfo();
-        defineButtonBorrar();
-        defineButtonEditar();
-        defineButtonCancelarEdicion();
-        defineButtonGuardarEdicion();
-    }
-
-    private void defineTextViewImagen() {
-        tvImagen.setOnClickListener(v -> {
-            Intent intent = new Intent(this, AddImagenActivity.class);
-            startActivity(intent);
-        });
+        defineTextViewMoreInfoListener();
+        defineButtonBorrarListener();
+        defineButtonEditarListener();
+        defineButtonCancelarEdicionListener();
+        defineButtonGuardarEdicionListener();
     }
 
     /**
      * Listener del textview tvMoreInfo. Hace una búsqueda en Wikipedia según el nombre del objeto
      * Flora
      */
-    private void defineTextViewMoreInfo() {
+    private void defineTextViewMoreInfoListener() {
         tvMoreInfo.setOnClickListener(view -> {
             if (etNombre.getText().toString().isEmpty()) {
                 Toast.makeText(context, R.string.toast_errorWiki, Toast.LENGTH_LONG).show();
@@ -145,7 +137,7 @@ public class EditFloraActivity extends AppCompatActivity {
     /**
      * Listener del button btBorrar. Borra el objeto Flora de la base de datos
      */
-    private void defineButtonBorrar() {
+    private void defineButtonBorrarListener() {
         btBorrar.setOnClickListener(view -> {
             new AlertDialog.Builder(context)
                     .setTitle(adBorrarTitulo.replace("X", etNombre.getText()))
@@ -165,16 +157,19 @@ public class EditFloraActivity extends AppCompatActivity {
     /**
      * Listener del button btEditar. Habilita la edición de campos
      */
-    private void defineButtonEditar() {
+    private void defineButtonEditarListener() {
         btEditar.setOnClickListener(view -> {
             new AlertDialog.Builder(context)
                     .setTitle(adEditarTitulo.replace("X", etNombre.getText()))
                     .setMessage(R.string.alertDialogBorrar_message)
-                    .setPositiveButton(R.string.alertDialog_confirmar, (dialog, which) -> {
+                    .setNeutralButton(R.string.alertDialog_cancelar, (dialog, which) -> {
+                        dialog.cancel();
+                    })
+                    .setPositiveButton(R.string.alertDialog_editFlora, (dialog, which) -> {
                         habilitarEdicion();
                     })
-                    .setNegativeButton(R.string.alertDialog_cancelar, (dialog, which) -> {
-                        dialog.cancel();
+                    .setNegativeButton(R.string.alertDialog_editImagen, (dialog, which) -> {
+                        editarImagen();
                     })
                     .show();
         });
@@ -184,7 +179,7 @@ public class EditFloraActivity extends AppCompatActivity {
      * Listener del button btCancelarEdicion. Cancela la edición del objeto Flora, reestableciendo
      * los datos a sus valores originales
      */
-    private void defineButtonCancelarEdicion() {
+    private void defineButtonCancelarEdicionListener() {
         btCancelarEdicion.setOnClickListener(view -> {
             new AlertDialog.Builder(context)
                     .setTitle(R.string.alertDialogCancelarEdicion_title)
@@ -204,7 +199,7 @@ public class EditFloraActivity extends AppCompatActivity {
      * Listener el button btGuardarEdicion. Guarda en la base de datos el objeto Flora con los
      * nuevos valores introducidos
      */
-    private void defineButtonGuardarEdicion() {
+    private void defineButtonGuardarEdicionListener() {
         btGuardarEdicion.setOnClickListener(view -> {
             new AlertDialog.Builder(context)
                     .setTitle(R.string.alertDialogGuardarEdicion_title)
@@ -231,9 +226,8 @@ public class EditFloraActivity extends AppCompatActivity {
      */
     private void habilitarEdicion() {
 
-        tvImagen.setVisibility(View.VISIBLE);
-
         ivFlora.setVisibility(View.GONE);
+        tvMoreInfo.setVisibility(View.GONE);
 
         btBorrar.setVisibility(View.GONE);
         btEditar.setVisibility(View.GONE);
@@ -268,9 +262,8 @@ public class EditFloraActivity extends AppCompatActivity {
      */
     private void deshabilitarEdicion() {
 
-        tvImagen.setVisibility(View.GONE);
-
         ivFlora.setVisibility(View.VISIBLE);
+        tvMoreInfo.setVisibility(View.VISIBLE);
 
         btBorrar.setVisibility(View.VISIBLE);
         btEditar.setVisibility(View.VISIBLE);
@@ -310,6 +303,14 @@ public class EditFloraActivity extends AppCompatActivity {
         return false;
     }
 
+    private void editarImagen() {
+        Intent intent = new Intent(this, EditImagenActivity.class);
+        Bundle bundle = getIntent().getExtras();
+        flora = bundle.getParcelable("idFlora");
+        intent.putExtra("idFlora", flora);
+        startActivity(intent);
+    }
+
     /**
      * Método que devuelve un objeto Flora con los valores introducidos en los campos
      * @return objeto Flora con los valores introducidos en los campos
@@ -317,6 +318,10 @@ public class EditFloraActivity extends AppCompatActivity {
     private Flora getFlora() {
 
         flora = new Flora();
+
+        Bundle bundle = getIntent().getExtras();
+        Flora oldFlora = bundle.getParcelable("idFlora");
+        flora.setId(oldFlora.getId());
 
         flora.setNombre(etNombre.getText().toString());
         flora.setFamilia(etFamilia.getText().toString());
@@ -350,7 +355,7 @@ public class EditFloraActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         flora = bundle.getParcelable("idFlora");
 
-        Picasso.get().load(ivFloraURL + flora.getId() + "/flora").into(ivFlora);
+        Picasso.get().load(ivFloraURL + flora.getId() + "/flora").memoryPolicy(MemoryPolicy.NO_CACHE).networkPolicy(NetworkPolicy.NO_CACHE).into(ivFlora);
 
         etNombre.setText(flora.getNombre());
         etFamilia.setText(flora.getFamilia());

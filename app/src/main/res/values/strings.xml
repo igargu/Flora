@@ -82,8 +82,10 @@
     <string name="toast_fieldsEmpty">El campo nombre no puede estar vacío</string>
     <string name="toast_añadirImagen">Imagen añadida</string>
     <string name="toast_nameExist">Ya existe una flora con este nombre</string>
-    <string name="toast_fieldsEmptyAddImage">El campo nombre y la ID no pueden estar vacíos</string>
+    <string name="toast_fieldsEmptyAddImage">Tiene que introducir un nombre y seleccionar una imagen</string>
     <string name="alertDialogCancelarAñadirImagen_title">¿Desea no añadir esta imagen?</string>
     <string name="alertDialogAñadirImagen_message">Será sustituida por la imagen actual</string>
     <string name="tvImagen">Pulse la imagen para editarla</string>
+    <string name="alertDialog_editFlora">Editar flora</string>
+    <string name="alertDialog_editImagen">Editar imagen</string>
 </resources>

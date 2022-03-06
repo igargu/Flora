@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private MainActivityViewModel mavm;
     private Adapter adapter;
 
-    private FloatingActionButton fabAdd, fabImagen;
+    private FloatingActionButton fabAdd;
 
     /**
      * Método que infla el layout
@@ -49,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
         initialize();
     }
 
+    /**
+     * Método que recarga el layout al volver a esta activty
+     */
     protected void onResume() {
         super.onResume();
         mavm.getFlora();
@@ -66,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         fabAdd = findViewById(R.id.fabAdd);
-        fabImagen = findViewById(R.id.fabImagen);
 
         mavm = new ViewModelProvider(this).get(MainActivityViewModel.class);
         mavm.getFlora();
@@ -75,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         defineFABAddListener();
-        defineFABImagenListener();
         defineFloraListener();
     }
 
@@ -84,7 +85,9 @@ public class MainActivity extends AppCompatActivity {
      */
     private void defineFloraListener() {
         adapter.setOnClickListener(view -> {
-            openEditFloraActivity(adapter.getItem(recyclerView.getChildAdapterPosition(view)));
+            Intent intent = new Intent(this, EditFloraActivity.class);
+            intent.putExtra("idFlora", adapter.getItem(recyclerView.getChildAdapterPosition(view)));
+            startActivity(intent);
         });
     }
 
@@ -92,62 +95,10 @@ public class MainActivity extends AppCompatActivity {
      * Listener del fab FABAdd. Abre la activity para añadir objetos Flora
      */
     private void defineFABAddListener() {
-        fabAdd.setOnClickListener(v -> openAddFloraActivity());
-    }
-
-    /**
-     * Listener del fab FABImagen. Abre la activity para añadir las imagenes de los objetos Flora
-     */
-    private void defineFABImagenListener() {
-        fabImagen.setOnClickListener(v -> openAddImagenActivity());
-    }
-
-    /**
-     * Método que abre la activity para añadir las imagenes de los objetos Flora
-     */
-    private void openAddImagenActivity() {
-        Intent intent = new Intent(this, AddImagenActivity.class);
-
-        ArrayList<Flora> floras = new ArrayList<>();
-        for (int i = 0; i < adapter.getItemCount(); i++) {
-            floras.add(adapter.getItem(i));
-        }
-        intent.putExtra("idFloras", floras);
-
-        startActivity(intent);
-    }
-
-    /**
-     * Método que abre la activity para añadir objetos Flora
-     */
-    private void openAddFloraActivity() {
-        Intent intent = new Intent(this, AddFloraActivity.class);
-
-        ArrayList<Flora> floras = new ArrayList<>();
-        for (int i = 0; i < adapter.getItemCount(); i++) {
-            floras.add(adapter.getItem(i));
-        }
-        intent.putExtra("idFloras", floras);
-
-        startActivity(intent);
-
-    }
-
-    /**
-     * Método que abre la activity para editar el objeto Flora que seleccionemos
-     * @param f Objeto Flora que queremos editar
-     */
-    private void openEditFloraActivity(Flora f) {
-        Intent intent = new Intent(this, EditFloraActivity.class);
-        intent.putExtra("idFlora", f);
-
-        ArrayList<Flora> floras = new ArrayList<>();
-        for (int i = 0; i < adapter.getItemCount(); i++) {
-            floras.add(adapter.getItem(i));
-        }
-        intent.putExtra("idFloras", floras);
-
-        startActivity(intent);
+        fabAdd.setOnClickListener(v -> {
+            Intent intent = new Intent(this, AddFloraActivity.class);
+            startActivity(intent);
+        });
     }
 
 }

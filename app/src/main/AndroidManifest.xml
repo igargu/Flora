@@ -16,7 +16,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.activity.AddImagenActivity"
+            android:name=".view.activity.EditImagenActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity

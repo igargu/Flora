@@ -38,8 +38,6 @@ public class AddFloraActivity extends AppCompatActivity {
             etAmenazas, etMedPropuestas;
     private Button btCancelarAñadir, btAñadir;
 
-    private ArrayList<Flora> floras = new ArrayList<>();
-
     /**
      * Método que infla el layout
      *
@@ -91,8 +89,6 @@ public class AddFloraActivity extends AppCompatActivity {
 
         btCancelarAñadir = findViewById(R.id.btCancelarAñadir);
         btAñadir = findViewById(R.id.btAñadir);
-
-        floras = (ArrayList<Flora>) getIntent().getSerializableExtra("idFloras");
 
         defineButtonAñadirListener();
         defineButtonCancelarAñadirListener();
