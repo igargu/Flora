@@ -7,7 +7,6 @@ Todos los datos que añadamos pueden ser editados o borrados en cualquier moment
 
 <img src="https://user-images.githubusercontent.com/81225623/156929037-815b8e87-527d-466b-aa85-86d6f1f915f0.jpg" width="300" height="550">
 
-
 ## Layout para añadir datos
 
 <img src="https://user-images.githubusercontent.com/81225623/156465976-27e71396-2fa2-4280-bf69-083afeb63b60.jpg" width="300" height="550">
