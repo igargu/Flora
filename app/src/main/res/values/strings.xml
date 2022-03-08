@@ -88,4 +88,6 @@
     <string name="tvImagen">Pulse la imagen para editarla</string>
     <string name="alertDialog_editFlora">Editar flora</string>
     <string name="alertDialog_editImagen">Editar imagen</string>
+    <string name="tvEmpty">Tu jardín está vacío</string>
+    <string name="contentDescription_ivEmpty">ivEmpty</string>
 </resources>

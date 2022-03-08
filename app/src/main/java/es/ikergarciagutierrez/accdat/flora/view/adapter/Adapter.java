@@ -1,14 +1,11 @@
 package es.ikergarciagutierrez.accdat.flora.view.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -20,10 +17,7 @@ import java.util.List;
 
 import es.ikergarciagutierrez.accdat.flora.R;
 import es.ikergarciagutierrez.accdat.flora.model.entity.Flora;
-import es.ikergarciagutierrez.accdat.flora.model.entity.Imagen;
 import es.ikergarciagutierrez.accdat.flora.view.adapter.viewholder.FloraViewHolder;
-import es.ikergarciagutierrez.accdat.flora.viewmodel.AddFloraViewModel;
-import es.ikergarciagutierrez.accdat.flora.viewmodel.MainActivityViewModel;
 
 /**
  * Adapter para el RecyclerView

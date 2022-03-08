@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -32,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private MainActivityViewModel mavm;
     private Adapter adapter;
+
+    private ImageView ivEmpty;
+    private TextView tvEmpty;
 
     private FloatingActionButton fabAdd;
 
@@ -70,10 +76,20 @@ public class MainActivity extends AppCompatActivity {
 
         fabAdd = findViewById(R.id.fabAdd);
 
+        ivEmpty = findViewById(R.id.ivEmpty);
+        tvEmpty = findViewById(R.id.tvEmpty);
+
         mavm = new ViewModelProvider(this).get(MainActivityViewModel.class);
         mavm.getFlora();
         mavm.getFloraLiveData().observe(this, floras -> {
             adapter.setFloraList(floras);
+            if (floras.isEmpty()) {
+                ivEmpty.setVisibility(View.VISIBLE);
+                tvEmpty.setVisibility(View.VISIBLE);
+            } else {
+                ivEmpty.setVisibility(View.GONE);
+                tvEmpty.setVisibility(View.GONE);
+            }
         });
 
         defineFABAddListener();
