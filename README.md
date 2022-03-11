@@ -7,6 +7,10 @@ Todos los datos que añadamos pueden ser editados o borrados en cualquier moment
 
 <img src="https://user-images.githubusercontent.com/81225623/156929037-815b8e87-527d-466b-aa85-86d6f1f915f0.jpg" width="300" height="550">
 
+## Layout principal cuando nuestra base de datos está vacía
+
+<img src="https://user-images.githubusercontent.com/81225623/157614806-db647df3-3596-49f7-85c1-08553ca1240e.png" width="300" height="500">
+
 ## Layout para añadir datos
 
 <img src="https://user-images.githubusercontent.com/81225623/156465976-27e71396-2fa2-4280-bf69-083afeb63b60.jpg" width="300" height="550">
