@@ -120,7 +120,7 @@ public class Repository {
      * Obtener todos los objetos Flora e insertarlos en floraLiveData
      */
     public void getFlora() {
-        Call<ArrayList<Flora>> call = floraClient.getFlora();
+        Call<ArrayList<Flora>> call = floraClient.getFlora("igarcia42@ieszaidinvergeles.org");
         call.enqueue(new Callback<ArrayList<Flora>>() {
             @Override
             public void onResponse(Call<ArrayList<Flora>> call, Response<ArrayList<Flora>> response) {
@@ -141,6 +141,7 @@ public class Repository {
      * @param flora Objeto flora que queremos crear
      */
     public void createFlora(Flora flora) {
+        flora.setCorreo("igarcia42@ieszaidinvergeles.org");
         Call<CreateResponse> call = floraClient.createFlora(flora);
         call.enqueue(new Callback<CreateResponse>() {
             @Override

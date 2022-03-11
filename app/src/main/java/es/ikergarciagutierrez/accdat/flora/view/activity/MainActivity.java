@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -40,6 +42,33 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvEmpty;
 
     private FloatingActionButton fabAdd;
+
+    /**
+     * Método que coloca el menú customizado creado mediante el recurso menu.xml.
+     *
+     * @param menu
+     * @return
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    /**
+     * Método que controla todas las opciones del menu. Al pulsar una de ellas se iniciará su
+     * correspondiente activity, todas recogidas en el package menu.
+     *
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_account) {
+
+        }
+        return true;
+    }
 
     /**
      * Método que infla el layout

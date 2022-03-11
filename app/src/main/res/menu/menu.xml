@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="es.ikergarciagutierrez.accdat.flora">
+    <item
+        android:id="@+id/action_account"
+        android:icon="@drawable/ic_baseline_account_circle_24"
+        android:orderInCategory="100"
+        android:title="@string/itemMenuAccount"
+        app:showAsAction="never" />
+</menu>

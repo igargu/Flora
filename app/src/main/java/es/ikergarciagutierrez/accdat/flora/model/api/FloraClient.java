@@ -15,6 +15,7 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface FloraClient {
 
@@ -24,8 +25,11 @@ public interface FloraClient {
     @GET("api/flora/{id}")
     Call<Flora> getFlora(@Path("id") long id);
 
+    /*@GET("api/flora")
+    Call<ArrayList<Flora>> getFlora();//*/
+
     @GET("api/flora")
-    Call<ArrayList<Flora>> getFlora();
+    Call<ArrayList<Flora>> getFlora(@Query("correo") String correo);
 
     @POST("api/flora")
     Call<CreateResponse> createFlora(@Body Flora flora);

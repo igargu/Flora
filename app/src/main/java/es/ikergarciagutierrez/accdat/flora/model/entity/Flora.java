@@ -6,7 +6,7 @@ import android.os.Parcelable;
 public class Flora implements Parcelable {
 
     private long id;
-    private String nombre, familia, identificacion, altitud, habitat, fitosociologia, biotipo,
+    private String correo, nombre, familia, identificacion, altitud, habitat, fitosociologia, biotipo,
             biologia_reproductiva, floracion, fructificacion, expresion_sexual, polinizacion,
             dispersion, numero_cromosomatico, reproduccion_asexual, distribucion, biologia,
             demografia, amenazas, medidas_propuestas;
@@ -16,6 +16,7 @@ public class Flora implements Parcelable {
 
     protected Flora(Parcel in) {
         id = in.readLong();
+        correo = in.readString();
         nombre = in.readString();
         familia = in.readString();
         identificacion = in.readString();
@@ -77,12 +78,13 @@ public class Flora implements Parcelable {
                 '}';
     }
 
-    public Flora(long id, String nombre, String familia, String identificacion, String altitud,
+    public Flora(long id, String correo, String nombre, String familia, String identificacion, String altitud,
                  String habitat, String fitosociologia, String biotopo, String biologia_reproductiva,
                  String floracion, String fructificacion, String expresion_sexual, String polinizacion,
                  String dispersion, String numero_cromosomico, String reproduccion_asexual, String distribucion,
                  String biologia, String demografia, String amenazas, String medidas_propuestas) {
         this.id = id;
+        this.correo = correo;
         this.nombre = nombre;
         this.familia = familia;
         this.identificacion = identificacion;
@@ -273,6 +275,14 @@ public class Flora implements Parcelable {
         this.medidas_propuestas = medidas_propuestas;
     }
 
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -281,6 +291,7 @@ public class Flora implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeLong(id);
+        parcel.writeString(correo);
         parcel.writeString(nombre);
         parcel.writeString(familia);
         parcel.writeString(identificacion);
