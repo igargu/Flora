@@ -90,5 +90,9 @@
     <string name="alertDialog_editImagen">Editar imagen</string>
     <string name="tvEmpty">Tu jardín está vacío</string>
     <string name="contentDescription_ivEmpty">ivEmpty</string>
-    <string name="itemMenuAccount">Cuenta</string>
+
+    <string name="login_account">Iniciar sesión</string>
+    <string name="logout_account">Cerrar sesión</string>
+
+    <string name="prefs_file">es.ikergarciagutierrez.accdat.flora.PREFERENCES_FILE_KEY</string>
 </resources>

@@ -2,6 +2,7 @@ package es.ikergarciagutierrez.accdat.flora.model;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.net.Uri;
@@ -120,7 +121,8 @@ public class Repository {
      * Obtener todos los objetos Flora e insertarlos en floraLiveData
      */
     public void getFlora() {
-        Call<ArrayList<Flora>> call = floraClient.getFlora("igarcia42@ieszaidinvergeles.org");
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.prefs_file), Context.MODE_PRIVATE);
+        Call<ArrayList<Flora>> call = floraClient.getFlora(sharedPreferences.getString("correo", ""));
         call.enqueue(new Callback<ArrayList<Flora>>() {
             @Override
             public void onResponse(Call<ArrayList<Flora>> call, Response<ArrayList<Flora>> response) {
@@ -141,7 +143,8 @@ public class Repository {
      * @param flora Objeto flora que queremos crear
      */
     public void createFlora(Flora flora) {
-        flora.setCorreo("igarcia42@ieszaidinvergeles.org");
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.prefs_file), Context.MODE_PRIVATE);
+        flora.setCorreo(sharedPreferences.getString("correo", ""));
         Call<CreateResponse> call = floraClient.createFlora(flora);
         call.enqueue(new Callback<CreateResponse>() {
             @Override

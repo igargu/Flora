@@ -7,6 +7,6 @@
         android:id="@+id/action_account"
         android:icon="@drawable/ic_baseline_account_circle_24"
         android:orderInCategory="100"
-        android:title="@string/itemMenuAccount"
+        android:title="@string/login_account"
         app:showAsAction="never" />
 </menu>

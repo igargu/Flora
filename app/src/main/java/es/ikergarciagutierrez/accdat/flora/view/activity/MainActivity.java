@@ -8,13 +8,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -43,6 +52,12 @@ public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton fabAdd;
 
+    private GoogleSignInClient mGoogleSignInClient;
+    static int RC_SIGN_IN = 100;
+
+    private MenuItem item;
+    private boolean signedIn;
+
     /**
      * Método que coloca el menú customizado creado mediante el recurso menu.xml.
      *
@@ -52,6 +67,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
+        item = menu.findItem(R.id.action_account);
+        if (signedIn) {
+            item.setTitle(R.string.logout_account);
+        } else {
+            item.setTitle(R.string.login_account);
+        }
+
         return true;
     }
 
@@ -64,10 +86,56 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_account) {
-
+        item = this.item;
+        if (item.getTitle().equals("Iniciar sesión")) {
+            signIn();
+        }
+        if (item.getTitle().equals("Cerrar sesión")) {
+            mGoogleSignInClient.signOut();
+            SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
+            SharedPreferences.Editor prefEditor = sharedPreferences.edit().clear();
+            prefEditor.apply();
+            Toast.makeText(context, "Sesión cerrada", Toast.LENGTH_SHORT).show();
         }
         return true;
+    }
+
+    private void signIn() {
+        Intent intent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(intent, RC_SIGN_IN);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
+    }
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+
+            SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
+            SharedPreferences.Editor prefEditor = sharedPreferences.edit();
+            prefEditor.putString("correo", account.getEmail());
+            prefEditor.apply();
+
+            // Signed in successfully, show authenticated UI.
+            Toast.makeText(context, "Sesión inicida", Toast.LENGTH_SHORT).show();
+            updateUI(account);
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.w("xyzyx", "signInResult:failed code=" + e.getStatusCode());
+            updateUI(null);
+        }
     }
 
     /**
@@ -80,8 +148,43 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        context = this;
+
+        // Configure sign-in to request the user's ID, email address, and basic
+        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        // Build a GoogleSignInClient with the options specified by gso.
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
         initialize();
+        context = this;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Check for existing Google Sign In account, if the user is already signed in
+        // the GoogleSignInAccount will be non-null.
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        updateUI(account);
+    }
+
+    //Change UI according to user data.
+    public void updateUI(GoogleSignInAccount account){
+        if(account != null){
+            // Sesión iniciada
+            signedIn = true;
+            fabAdd.setVisibility(View.VISIBLE);
+            tvEmpty.setText(R.string.tvEmpty);
+        }else {
+            // Sesión no iniciada
+            signedIn = false;
+            fabAdd.setVisibility(View.INVISIBLE);
+            tvEmpty.setText("Inicia sesión para acceder a tu jardín");
+        }
+
     }
 
     /**
