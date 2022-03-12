@@ -150,11 +150,12 @@ public class Repository {
             @Override
             public void onResponse(Call<CreateResponse> call, Response<CreateResponse> response) {
                 addFloraLiveData.setValue(response.body().id);
+                Log.v("xyzyx", response.body().toString());
             }
 
             @Override
             public void onFailure(Call<CreateResponse> call, Throwable t) {
-
+                Log.v("xyzyx", t.getLocalizedMessage());
             }
         });
     }
@@ -174,7 +175,8 @@ public class Repository {
                     editFloraLiveData.setValue(response.body().rows);
                     showToast(R.string.toast_editarFlora);
                 } catch (NullPointerException e) {
-                    showToast(R.string.toast_nameExist);
+                    Log.v("xyzyx", response.body().toString());
+                    //showToast(R.string.toast_nameExist);
                 }
             }
 

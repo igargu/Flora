@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -62,7 +63,7 @@ public class AddFloraActivity extends AppCompatActivity {
                 showToast(R.string.toast_añadirFlora);
                 finish();
             } else {
-                showToast(R.string.toast_nameExist);
+                // showToast(R.string.toast_nameExist);
             }
         });
 

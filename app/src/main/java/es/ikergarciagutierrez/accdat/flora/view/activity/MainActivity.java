@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences.Editor prefEditor = sharedPreferences.edit().clear();
             prefEditor.apply();
             Toast.makeText(context, "Sesión cerrada", Toast.LENGTH_SHORT).show();
+            refreshActivity();
         }
         return true;
     }
@@ -129,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
 
             // Signed in successfully, show authenticated UI.
             Toast.makeText(context, "Sesión inicida", Toast.LENGTH_SHORT).show();
+            refreshActivity();
             updateUI(account);
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
@@ -247,6 +249,13 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, AddFloraActivity.class);
             startActivity(intent);
         });
+    }
+
+    private void refreshActivity() {
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
     }
 
 }
