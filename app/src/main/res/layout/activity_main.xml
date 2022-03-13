@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="70dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,7 +42,7 @@
         android:layout_marginTop="148dp"
         android:text="@string/tvEmpty"
         android:textColor="@color/primary_dark_color"
-        android:textSize="34sp"
+        android:textSize="20sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,5 +61,21 @@
         app:layout_constraintTop_toBottomOf="@+id/tvEmpty"
         app:layout_constraintVertical_bias="0.169"
         app:srcCompat="@drawable/ic_baseline_local_florist_24" />
+
+    <TextView
+        android:id="@+id/tvAccount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="center"
+        android:text="@string/tvAccount"
+        android:textColor="@color/primary_dark_color"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

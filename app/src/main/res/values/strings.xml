@@ -95,4 +95,5 @@
     <string name="logout_account">Cerrar sesión</string>
 
     <string name="prefs_file">es.ikergarciagutierrez.accdat.flora.PREFERENCES_FILE_KEY</string>
+    <string name="tvAccount">Account</string>
 </resources>

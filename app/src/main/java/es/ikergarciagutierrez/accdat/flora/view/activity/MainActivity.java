@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     static int RC_SIGN_IN = 100;
 
+    private TextView tvAccount;
     private MenuItem item;
     private boolean signedIn;
 
@@ -126,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
             SharedPreferences.Editor prefEditor = sharedPreferences.edit();
             prefEditor.putString("correo", account.getEmail());
+            prefEditor.putString("name", account.getDisplayName());
             prefEditor.apply();
 
             // Signed in successfully, show authenticated UI.
@@ -180,11 +182,15 @@ public class MainActivity extends AppCompatActivity {
             signedIn = true;
             fabAdd.setVisibility(View.VISIBLE);
             tvEmpty.setText(R.string.tvEmpty);
+            SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.prefs_file), Context.MODE_PRIVATE);
+            tvAccount.setText("¡Hola " + sharedPreferences.getString("name", "") + "!");
+            tvAccount.setVisibility(View.VISIBLE);
         }else {
             // Sesión no iniciada
             signedIn = false;
             fabAdd.setVisibility(View.INVISIBLE);
             tvEmpty.setText("Inicia sesión para acceder a tu jardín");
+            tvAccount.setVisibility(View.INVISIBLE);
         }
 
     }
@@ -212,6 +218,8 @@ public class MainActivity extends AppCompatActivity {
 
         ivEmpty = findViewById(R.id.ivEmpty);
         tvEmpty = findViewById(R.id.tvEmpty);
+
+        tvAccount = findViewById(R.id.tvAccount);
 
         mavm = new ViewModelProvider(this).get(MainActivityViewModel.class);
         mavm.getFlora();
