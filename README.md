@@ -3,9 +3,15 @@
 Esta app trabaja con una base de datos en la nube que contiene datos sobre plantas, nativas o introducidas, de una región geográfica, de un período geológico determinado, o de un ecosistema determinado. Podemos definir diferentes datos como su biotipo, número cromosomático, fructificación, etc.
 Todos los datos que añadamos pueden ser editados o borrados en cualquier momento, además de poder incluir una imagen para cada planta junto a un nombre y descripción.
 
-## Layout principal
+Nos tenemos que registrar con una cuenta de Google para hacer uso de la base de datos, pudiendo cerrar sesión cuando queramos y de esta manera accediendo sólo a nuestros datos.
 
-<img src="https://user-images.githubusercontent.com/81225623/156929037-815b8e87-527d-466b-aa85-86d6f1f915f0.jpg" width="300" height="550">
+## Layout principal sin una sesión iniciada
+
+<img src="https://user-images.githubusercontent.com/81225623/158145346-bfa3de15-7103-4207-80d5-63b52ee71238.png" width="300" height="550">
+
+## Layout principal con una sesión inicida
+
+<img src="https://user-images.githubusercontent.com/81225623/158145322-c91961b6-3a4e-4bce-89bc-db1e3d61c7c8.png" width="300" height="550">
 
 ## Layout principal cuando nuestra base de datos está vacía
 
