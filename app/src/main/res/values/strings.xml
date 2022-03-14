@@ -1,99 +1,118 @@
 <resources>
-    <string name="app_name">Flora</string>
-    <string name="contentDescription_ivFlora">ivFlora</string>
-    <string name="floraNombre">Nombre</string>
-    <string name="floraFamilia">Familia</string>
-    <string name="floraIdentificacion">Identificación</string>
-    <string name="floraAltitud">Altitud</string>
-    <string name="floraHabitat">Hábitat</string>
-    <string name="floraFitosociologia">Fitosociología</string>
-    <string name="floraBiotipo">Biotipo</string>
-    <string name="floraBiologiaReproductiva">Biología reproductiva</string>
-    <string name="floraFloracion">Floración</string>
-    <string name="floraFructificacion">Fructificación</string>
-    <string name="floraExpresionSexual">Expresión sexual</string>
-    <string name="floraPolinazcion">Polinización</string>
-    <string name="floraDispersion">Dispersión</string>
-    <string name="floraNumCromosomatico">Número cromosomático</string>
-    <string name="floraReproduccionAsexual">Reproducción asexual</string>
-    <string name="floraDistribucion">Distribución</string>
-    <string name="floraBiologia">Biología</string>
-    <string name="floraDemografia">Demografía</string>
-    <string name="floraAmenazas">Amenazas</string>
-    <string name="floraMedidasPropuestas">Medidas propuestas</string>
-    <string name="etNombre">Nombre</string>
-    <string name="btAñadir">Añadir</string>
-    <string name="contentDescription_fabAdd">Add icon</string>
-    <string name="contentDescription_fabImagen">Upload icon</string>
-    <string name="hintIdImagen">Id Imagen</string>
-    <string name="hintNombreImagen">Nombre</string>
-    <string name="hintDescripcionImagen">Descripción</string>
-    <string name="tvAddFloraTitle"><u>Añadir una nueva flora</u></string>
-    <string name="hintFloraNombre">Nombre</string>
-    <string name="hintFloraFamilia">Familia</string>
-    <string name="hintFloraIdentificacion">Identificación</string>
-    <string name="hintFloraAltitud">Altitud</string>
-    <string name="hintFloraFitosociologia">Fitosociología</string>
-    <string name="hintFloraBiotipo">Biotipo</string>
-    <string name="hintFloraBiologiaReproductiva">Biología reproductiva</string>
-    <string name="hintFloraFloracion">Floración</string>
-    <string name="hintFloraHabitat">Hábitat</string>
-    <string name="hintFloraFructificacion">Fructificación</string>
-    <string name="hintFloraExpresionSexual">Expresión sexual</string>
-    <string name="hintFloraPolinizacion">Polinización</string>
-    <string name="hintFloraDispersion">Dispersión</string>
-    <string name="hintFloraNumCromosomatico">Número cromosomático</string>
-    <string name="hintFloraReproduccionAsexual">Reproducción asexual</string>
-    <string name="hintFloraDistribucion">Distribución</string>
-    <string name="hintFloraBiologia">Biología</string>
-    <string name="hintFloraDemografia">Demografía</string>
-    <string name="hintFloraAmenazas">Amenazas</string>
-    <string name="hintFloraMedidasPropuestas">Medidas propuestas</string>
-    <string name="btCancelar">Cancelar</string>
-    <string name="tvEditFloraTitle">Datos:</string>
-    <string name="btBorrar">Borrar</string>
-    <string name="btEditar">Editar</string>
-    <string name="btGuardar">Guardar</string>
-    <string name="contentDescription_ivSelectImagen">ivSelectImagen</string>
-    <string name="tvUploadImagenTitle"><u>Subir imagen</u></string>
+
+    <!-- AlertDialog -->
     <string name="alertDialog_cancelar">Cancelar</string>
     <string name="alertDialog_confirmar">Confirmar</string>
-    <string name="alertDialogBorrar_message">¡Perderás estos datos!</string>
-    <string name="alertDialogEditar_message">Habilitarás la edición de datos</string>
-    <string name="alertDialogCancelarEdicion_message">¡Perderás los cambios realizados!</string>
-    <string name="alertDialogCancelarEdicion_title">¿Cancelar edición?</string>
-    <string name="alertDialogGuardarEdicion_title">¿Guardar edición?</string>
-    <string name="alertDialogGuardarEdicion_message">Se aplicarán los cambios realizados</string>
     <string name="alertDialogAñadir_title">¿Añadir estos datos?</string>
+    <string name="alertDialogAñadir_message">Serán guardado en la base de datos</string>
+    <string name="alertDialogAñadirImagen_message">Será sustituida por la imagen actual</string>
+    <string name="alertDialogBorrar_message">¡Perderás estos datos!</string>
     <string name="alertDialogCancelarAñadir_title">¿Deseas no añadir estos datos?</string>
     <string name="alertDialogCancelarAñadir_message">¡Perderás los cambios realizados!</string>
-    <string name="alertDialogAñadir_message">Serán guardado en la base de datos</string>
-    <string name="toast_añadirFlora">Datos añadidos</string>
-    <string name="toast_editarFlora">Datos editados</string>
-    <string name="toast_borrarFlora">Datos borrados</string>
-    <string name="toast_error">Error</string>
-    <string name="toast_errorWiki">El campo Nombre se encuentra vacío</string>
-    <string name="tvMoreInfo">Pulsa aquí para obtener más información</string>
+    <string name="alertDialogCancelarAñadirImagen_title">¿Desea no añadir esta imagen?</string>
+    <string name="alertDialogCancelarEdicion_message">¡Perderás los cambios realizados!</string>
+    <string name="alertDialogCancelarEdicion_title">¿Cancelar edición?</string>
+    <string name="alertDialogEditar_message">Habilitarás la edición de datos</string>
+    <string name="alertDialog_editFlora">Editar flora</string>
+    <string name="alertDialog_editImagen">Editar imagen</string>
+    <string name="alertDialogGuardarEdicion_title">¿Guardar edición?</string>
+    <string name="alertDialogGuardarEdicion_message">Se aplicarán los cambios realizados</string>
     <string name="alertDialog_flora">Flora</string>
     <string name="alertDialog_imagen">Imagen</string>
     <string name="alertDialogMain_message">¿Qué datos desea ver?</string>
-    <string name="hintIdFlora">Id flora</string>
-    <string name="toast_reload">Recargando...</string>
-    <string name="toast_fieldsEmpty">El campo nombre no puede estar vacío</string>
-    <string name="toast_añadirImagen">Imagen añadida</string>
-    <string name="toast_nameExist">Ya existe una flora con este nombre</string>
-    <string name="toast_fieldsEmptyAddImage">Tiene que introducir un nombre y seleccionar una imagen</string>
-    <string name="alertDialogCancelarAñadirImagen_title">¿Desea no añadir esta imagen?</string>
-    <string name="alertDialogAñadirImagen_message">Será sustituida por la imagen actual</string>
-    <string name="tvImagen">Pulse la imagen para editarla</string>
-    <string name="alertDialog_editFlora">Editar flora</string>
-    <string name="alertDialog_editImagen">Editar imagen</string>
-    <string name="tvEmpty">Tu jardín está vacío</string>
-    <string name="contentDescription_ivEmpty">ivEmpty</string>
 
+    <!-- App -->
+    <string name="app_name">Flora</string>
+
+    <!-- Buttons -->
+    <string name="btAñadir">Añadir</string>
+    <string name="btBorrar">Borrar</string>
+    <string name="btCancelar">Cancelar</string>
+    <string name="btEditar">Editar</string>
+    <string name="tvEditFloraTitle">Datos:</string>
+    <string name="btGuardar">Guardar</string>
+
+    <!-- Content Description -->
+    <string name="contentDescription_fabAdd">Add icon</string>
+    <string name="contentDescription_ivFlora">ivFlora</string>
+    <string name="contentDescription_ivEmpty">ivEmpty</string>
+    <string name="contentDescription_ivSelectImagen">ivSelectImagen</string>
+
+    <!-- Flora -->
+    <string name="floraAltitud">Altitud</string>
+    <string name="floraAmenazas">Amenazas</string>
+    <string name="floraBiologia">Biología</string>
+    <string name="floraBiologiaReproductiva">Biología reproductiva</string>
+    <string name="floraBiotipo">Biotipo</string>
+    <string name="floraDemografia">Demografía</string>
+    <string name="floraDispersion">Dispersión</string>
+    <string name="floraDistribucion">Distribución</string>
+    <string name="floraExpresionSexual">Expresión sexual</string>
+    <string name="floraFamilia">Familia</string>
+    <string name="floraFitosociologia">Fitosociología</string>
+    <string name="floraFloracion">Floración</string>
+    <string name="floraFructificacion">Fructificación</string>
+    <string name="floraHabitat">Hábitat</string>
+    <string name="floraIdentificacion">Identificación</string>
+    <string name="floraMedidasPropuestas">Medidas propuestas</string>
+    <string name="floraNombre">Nombre</string>
+    <string name="floraNumCromosomatico">Número cromosomático</string>
+    <string name="floraPolinazcion">Polinización</string>
+    <string name="floraReproduccionAsexual">Reproducción asexual</string>
+
+    <!-- Hint -->
+    <string name="hintDescripcionImagen">Descripción</string>
+    <string name="hintFloraAltitud">Altitud</string>
+    <string name="hintFloraAmenazas">Amenazas</string>
+    <string name="hintFloraBiologia">Biología</string>
+    <string name="hintFloraBiologiaReproductiva">Biología reproductiva</string>
+    <string name="hintFloraBiotipo">Biotipo</string>
+    <string name="hintFloraDemografia">Demografía</string>
+    <string name="hintFloraDispersion">Dispersión</string>
+    <string name="hintFloraDistribucion">Distribución</string>
+    <string name="hintFloraExpresionSexual">Expresión sexual</string>
+    <string name="hintFloraFamilia">Familia</string>
+    <string name="hintFloraFitosociologia">Fitosociología</string>
+    <string name="hintFloraFloracion">Floración</string>
+    <string name="hintFloraFructificacion">Fructificación</string>
+    <string name="hintFloraHabitat">Hábitat</string>
+    <string name="hintFloraIdentificacion">Identificación</string>
+    <string name="hintFloraMedidasPropuestas">Medidas propuestas</string>
+    <string name="hintFloraNombre">Nombre</string>
+    <string name="hintFloraNumCromosomatico">Número cromosomático</string>
+    <string name="hintFloraPolinizacion">Polinización</string>
+    <string name="hintFloraReproduccionAsexual">Reproducción asexual</string>
+    <string name="hintIdFlora">Id flora</string>
+    <string name="hintIdImagen">Id Imagen</string>
+    <string name="hintNombreImagen">Nombre</string>
+
+    <!-- Item Menú -->
     <string name="login_account">Iniciar sesión</string>
     <string name="logout_account">Cerrar sesión</string>
 
+    <!-- Preferencias compartidas -->
     <string name="prefs_file">es.ikergarciagutierrez.accdat.flora.PREFERENCES_FILE_KEY</string>
+
+    <!-- TextView -->
     <string name="tvAccount">Account</string>
+    <string name="tvAddFloraTitle"><u>Añadir una nueva flora</u></string>
+    <string name="tvEmpty">Tu jardín está vacío</string>
+    <string name="tvImagen">Pulse la imagen para editarla</string>
+    <string name="tvMoreInfo">Pulsa aquí para obtener más información</string>
+    <string name="tvUploadImagenTitle"><u>Subir imagen</u></string>
+
+    <!-- Toast -->
+    <string name="toast_añadirFlora">Datos añadidos</string>
+    <string name="toast_añadirImagen">Imagen añadida</string>
+    <string name="toast_borrarFlora">Datos borrados</string>
+    <string name="toast_editarFlora">Datos editados</string>
+    <string name="toast_error">Error</string>
+    <string name="toast_errorWiki">El campo Nombre se encuentra vacío</string>
+    <string name="toast_fieldsEmpty">El campo nombre no puede estar vacío</string>
+    <string name="toast_fieldsEmptyAddImage">Tiene que introducir un nombre y seleccionar una imagen</string>
+    <string name="toast_logged_in">Sesión iniciada</string>
+    <string name="toast_logged_out">Sesión cerrada</string>
+    <string name="toast_nameExist">Ya existe una flora con este nombre</string>
+    <string name="toast_reload">Recargando...</string>
+
 </resources>

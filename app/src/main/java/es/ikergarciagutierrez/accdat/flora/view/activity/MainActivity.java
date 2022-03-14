@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean signedIn;
 
     /**
-     * Método que coloca el menú customizado creado mediante el recurso menu.xml.
+     * Método que coloca el menu customizado creado mediante el recurso menu.xml
      *
      * @param menu
      * @return
@@ -79,8 +80,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Método que controla todas las opciones del menu. Al pulsar una de ellas se iniciará su
-     * correspondiente activity, todas recogidas en el package menu.
+     * Método que controla los items del menu
      *
      * @param item
      * @return
@@ -96,47 +96,60 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
             SharedPreferences.Editor prefEditor = sharedPreferences.edit().clear();
             prefEditor.apply();
-            Toast.makeText(context, "Sesión cerrada", Toast.LENGTH_SHORT).show();
+            showToast(R.string.toast_logged_out);
             refreshActivity();
         }
         return true;
     }
 
+    /**
+     * Método que inicia la sesión con una cuenta de Google
+     */
     private void signIn() {
         Intent intent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(intent, RC_SIGN_IN);
     }
 
+    /**
+     * Método que permite al usuario seleccionar una cuenta de Google ya registrada en la aplicación
+     * o registrar una nueva
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+        // Resultado devuelto al lanzar el intent de GoogleSignInClient
         if (requestCode == RC_SIGN_IN) {
-            // The Task returned from this call is always completed, no need to attach
-            // a listener.
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
         }
     }
 
+    /**
+     * Método que guarda los datos necesarios del usuario en la preferencias compartidas
+     *
+     * @param completedTask
+     */
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
+            // Guardamos los datos del usuario en las preferencias compartidas
             SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
             SharedPreferences.Editor prefEditor = sharedPreferences.edit();
             prefEditor.putString("correo", account.getEmail());
             prefEditor.putString("name", account.getDisplayName());
             prefEditor.apply();
 
-            // Signed in successfully, show authenticated UI.
-            Toast.makeText(context, "Sesión inicida", Toast.LENGTH_SHORT).show();
+            // Se ha iniciado sesión correctamente, mostramos un mensaje el usuario
+            showToast(R.string.toast_logged_in);
             refreshActivity();
             updateUI(account);
         } catch (ApiException e) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            // Ha habido um problema con el inicio de sesión
             Log.w("xyzyx", "signInResult:failed code=" + e.getStatusCode());
             updateUI(null);
         }
@@ -153,31 +166,33 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
-        // Configure sign-in to request the user's ID, email address, and basic
-        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
 
-        // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         initialize();
         context = this;
     }
 
+    /**
+     * Método que se ejecuta al iniciar la aplicación, comprobando si hay una cuenta logueda
+     */
     @Override
     protected void onStart() {
         super.onStart();
-        // Check for existing Google Sign In account, if the user is already signed in
-        // the GoogleSignInAccount will be non-null.
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         updateUI(account);
     }
 
-    //Change UI according to user data.
-    public void updateUI(GoogleSignInAccount account){
-        if(account != null){
+    /**
+     * Método que actualiza la UI según si se a iniciado sesión o no
+     *
+     * @param account
+     */
+    public void updateUI(GoogleSignInAccount account) {
+        if (account != null) {
             // Sesión iniciada
             signedIn = true;
             fabAdd.setVisibility(View.VISIBLE);
@@ -185,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.prefs_file), Context.MODE_PRIVATE);
             tvAccount.setText("¡Hola " + sharedPreferences.getString("name", "") + "!");
             tvAccount.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             // Sesión no iniciada
             signedIn = false;
             fabAdd.setVisibility(View.INVISIBLE);
@@ -264,6 +279,20 @@ public class MainActivity extends AppCompatActivity {
         overridePendingTransition(0, 0);
         startActivity(getIntent());
         overridePendingTransition(0, 0);
+    }
+
+    /**
+     * Método que muestra un Toast personalizado
+     *
+     * @param message Mensaje que queremos que aparezca en el Toast
+     */
+    private void showToast(int message) {
+        Toast toast = new Toast(context);
+        View view = LayoutInflater.from(context).inflate(R.layout.toast_layout, null);
+        TextView tvToast = view.findViewById(R.id.tvMessage);
+        tvToast.setText(message);
+        toast.setView(view);
+        toast.show();
     }
 
 }

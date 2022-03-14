@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,7 @@ import es.ikergarciagutierrez.accdat.flora.model.entity.CreateResponse;
 import es.ikergarciagutierrez.accdat.flora.model.entity.Flora;
 import es.ikergarciagutierrez.accdat.flora.model.entity.Imagen;
 import es.ikergarciagutierrez.accdat.flora.model.entity.RowsResponse;
+import es.ikergarciagutierrez.accdat.flora.view.activity.MainActivity;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -176,7 +178,7 @@ public class Repository {
                     showToast(R.string.toast_editarFlora);
                 } catch (NullPointerException e) {
                     Log.v("xyzyx", response.body().toString());
-                    //showToast(R.string.toast_nameExist);
+                    showToast(R.string.toast_nameExist);
                 }
             }
 
@@ -251,11 +253,11 @@ public class Repository {
      * @param message Mensaje que queremos que aparezca en el Toast
      */
     private void showToast(int message) {
-        Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
-        View toastView = toast.getView();
-        toastView.getBackground().setColorFilter(context.getResources().getColor(R.color.primary_dark_color), PorterDuff.Mode.SRC_IN);
-        TextView tv = (TextView) toast.getView().findViewById(android.R.id.message);
-        tv.setTextColor(Color.WHITE);
+        Toast toast = new Toast(context);
+        View view = LayoutInflater.from(context).inflate(R.layout.toast_layout, null);
+        TextView tvToast = view.findViewById(R.id.tvMessage);
+        tvToast.setText(message);
+        toast.setView(view);
         toast.show();
     }
 
