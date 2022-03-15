@@ -93,12 +93,16 @@
     <!-- Preferencias compartidas -->
     <string name="prefs_file">es.ikergarciagutierrez.accdat.flora.PREFERENCES_FILE_KEY</string>
 
+    <!-- Snackbar -->
+    <string name="snackbar_login">Debes iniciar sesión con una cuenta del IES Zaidín Vergeles</string>
+
     <!-- TextView -->
     <string name="tvAccount">Account</string>
     <string name="tvAddFloraTitle"><u>Añadir una nueva flora</u></string>
     <string name="tvEmpty">Tu jardín está vacío</string>
     <string name="tvImagen">Pulse la imagen para editarla</string>
     <string name="tvMoreInfo">Pulsa aquí para obtener más información</string>
+    <string name="tvNoLogin">Inicia sesión para acceder a tu jardín</string>
     <string name="tvUploadImagenTitle"><u>Subir imagen</u></string>
 
     <!-- Toast -->
@@ -110,6 +114,7 @@
     <string name="toast_errorWiki">El campo Nombre se encuentra vacío</string>
     <string name="toast_fieldsEmpty">El campo nombre no puede estar vacío</string>
     <string name="toast_fieldsEmptyAddImage">Tiene que introducir un nombre y seleccionar una imagen</string>
+    <string name="toast_invalidEmail">Cuenta inválida</string>
     <string name="toast_logged_in">Sesión iniciada</string>
     <string name="toast_logged_out">Sesión cerrada</string>
     <string name="toast_nameExist">Ya existe una flora con este nombre</string>

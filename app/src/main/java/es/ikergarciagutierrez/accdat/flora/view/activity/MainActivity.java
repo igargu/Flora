@@ -26,6 +26,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -89,7 +90,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         item = this.item;
         if (item.getTitle().equals("Iniciar sesión")) {
-            signIn();
+            Snackbar.make(getWindow().getDecorView(), R.string.snackbar_login, Snackbar.LENGTH_LONG)
+                    .setActionTextColor(getResources().getColor(R.color.primary_color))
+                    .setAction("Aceptar", view1 -> {
+                        signIn();
+                    })
+                    .show();
         }
         if (item.getTitle().equals("Cerrar sesión")) {
             mGoogleSignInClient.signOut();
@@ -123,8 +129,18 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         // Resultado devuelto al lanzar el intent de GoogleSignInClient
         if (requestCode == RC_SIGN_IN) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            handleSignInResult(task);
+            try {
+                Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+                String dominio[] = task.getResult().getEmail().split("@");
+                if (dominio[1].trim().equals("ieszaidinvergeles.org")) {
+                    handleSignInResult(task);
+                } else {
+                    showToast(R.string.toast_invalidEmail);
+                    mGoogleSignInClient.signOut();
+                }
+            } catch (RuntimeException e) {
+
+            }
         }
     }
 
@@ -204,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
             // Sesión no iniciada
             signedIn = false;
             fabAdd.setVisibility(View.INVISIBLE);
-            tvEmpty.setText("Inicia sesión para acceder a tu jardín");
+            tvEmpty.setText(R.string.tvNoLogin);
             tvAccount.setVisibility(View.INVISIBLE);
         }
 
@@ -274,6 +290,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Método que recarga el layout
+     */
     private void refreshActivity() {
         finish();
         overridePendingTransition(0, 0);
