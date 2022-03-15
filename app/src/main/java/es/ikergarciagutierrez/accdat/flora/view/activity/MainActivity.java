@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         item = this.item;
         if (item.getTitle().equals("Iniciar sesión")) {
-            Snackbar.make(getWindow().getDecorView(), R.string.snackbar_login, Snackbar.LENGTH_LONG)
+            Snackbar.make(getWindow().getDecorView(), R.string.snackbar_login, Snackbar.LENGTH_INDEFINITE)
                     .setActionTextColor(getResources().getColor(R.color.primary_color))
                     .setAction("Aceptar", view1 -> {
                         signIn();
